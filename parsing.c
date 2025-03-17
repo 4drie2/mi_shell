@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/17 21:13:09 by abidaux          ###   ########.fr       */
+/*   Created: 2025/03/17 21:09:16 by abidaux           #+#    #+#             */
+/*   Updated: 2025/03/17 21:28:28 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(void)
+void	parsing(char *input)
 {
-	char	*pre_input;
-	char	*input;
-	bool	keep_running;
+	t_token	*token;
+	int		i;
 
-	keep_running = true;
-	while (keep_running)
+	token = malloc(sizeof(t_token));
+	i = -1;
+	while (input[++i])
 	{
-		pre_input = readline("my_shell >");
-		input = ft_strtrim(pre_input, " \t\n\v\f\r");
-		if (!input || !ft_strncmp(input, "exit", 5))
-			keep_running=false;
+		if (input[i] == '<')
+			token->type = 1;
+		else if (input[i] == '>')
+			token->type = 3;
+		else if (input[i] == '|')
+			token->type = 5;
+		else if (input[i] == ' ')
+			token->next = malloc(sizeof(t_token));
 		else
-			parsing(input);
-		add_history(pre_input);
-		free(pre_input);
-		free(input);
+			printf("CMD\n");
 	}
-	rl_clear_history();
-	return 0;
 }
