@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/18 17:48:27 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:37:21 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,28 @@ void	free_envp(char **envp)
 	free(envp);
 }
 
+/*write exit quand exit : strace -e write bash*/
 int	handle_user_input(char *input, t_state *state)
 {
 	t_command	*cmd;
 
-	if (!input || ft_strncmp(input, "exit", 4) == 0)
+	if (!input || ft_strcmp(input, "exit") == 0
+			|| (*input == '"' && ft_strcmp(input + 1, "exit") == 0)
+			|| (*input == '\'' && ft_strcmp(input + 1, "exit") == 0))
 	{
 		ft_putstr_fd("exit\n", 1);
-		free_envp(state->envp);
+		free_environment(state->envp);
 		free(input);
 		exit(EXIT_SUCCESS);
 	}
+	if (is_empty_or_spaces(input))
+		return (0);
+	cmd = parse_input(input, state);
+	if (!cmd)
+		return (1);
+	exec_shell(cmd, state);
+	free_command_list(cmd);
+	return (0);
 }
 
 /*
@@ -50,13 +61,13 @@ static int	init_state(t_state *state, char **envp)
 	char	*value;
 	int		i;
 
-	state->envp = copy_environment(envp);
+	state->envp = copy_environment(envp); // a faire
 	if (!state->envp)
 		return (EXIT_FAILURE);
-	shlvl = search_in_local_env(state->envp, "SHLVL");
+	shlvl = search_in_local_env(state->envp, "SHLVL"); // a faire
 	i = ft_atoi(shlvl) + 1;
 	value = ft_itoa(i);
-	state->envp = set_env_var(state->envp, "SHLVL", value);
+	state->envp = set_env_var(state->envp, "SHLVL", value); // a faire
 	state->last_exit_status = 0;
 	state->num_pipes = 0;
 	state->index = 0;
@@ -75,79 +86,38 @@ static int	init_state(t_state *state, char **envp)
 
 
 
-static void	display_prompt(void)
+static void	display_prompt(t_state *state)
 {
 	char *input;
 
 	while(1)
 	{
+		char	*scrap_input;
+
 		input = readline("\001\033[1;32m\002Mi-Shell $ \001\033[0m\002");
-		if (!input)
+		add_history(input);
+		scrap_input = ft_strtrim(input, " \t\r\b"); // added
+		if (!scrap_input)
 		{
-			ft_putstr_fd("exit\n", 1);
+			ft_putstr_fd("exit\n", 2); // 1->2
 			break;
 		}
-		if (*input)
-		{
-			// faire la fonctione handle user input avec le add history
-		}
+		if (*scrap_input)
+			handle_user_input(scrap_input, state);
+		free(input);
+		free(scrap_input);
 	}
 }
 
 
-int main(int argc, char **argv, char **envp)
+int main(int ac, char **av, char **envp)
 {
-	t_state shell;
+	t_state	shell;
 
-	(void) argc, (void) argv;
+	(void) ac, (void) av;
 	if (init_state(&shell, envp) == 1)
 	{
 		return(1);
 	}
-	display_prompt();
+	display_prompt(&shell);
 }
-
-
-// int main(int argc, char **argv, char **envp)
-// {
-// 	(void) argc, (void) argv;
-// 	char	*pre_input;
-// 	char	*input;
-// 	bool	keep_running;
-
-// 	keep_running = true;
-// 	while (keep_running)
-// 	{
-// 		pre_input = readline("my_shell >");
-// 		input = ft_strtrim(pre_input, " \t\n\v\f\r");
-// 		if (!input || !ft_strncmp(input, "exit", 5))
-// 			keep_running=false;
-// 		else
-// 			printf("input: %s\n", input); // next step: parsing(input);
-// 		add_history(pre_input);
-// 		free(pre_input);
-// 		free(input);
-// 	}
-// 	rl_clear_history();
-// 	return 0;
-// }
-
-
-// /*
-// ** main: init l'état, setup_signals, lance la boucle du prompt
-// */
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	t_state	shell_state;
-
-// 	(void) argc, (void) argv;
-// 	if (init_state(&shell_state, envp) == EXIT_FAILURE) // permet de preparer la variable d'env, le numero de pipe,
-// 	{
-// 		return (EXIT_FAILURE);
-// 	}
-// 	setup_signals(); // permet de gerer les signaux
-// 	display_prompt(&shell_state); // le readline ici.
-// 	rl_clear_history(); // free l'historique de readline
-// 	free_environment(shell_state.envp); // permet de free l'envp
-// 	return (shell_state.last_exit_status);
-// }
