@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+         #
+#    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 17:09:20 by abidaux           #+#    #+#              #
-#    Updated: 2025/03/18 17:10:54 by pthuilli         ###   ########.fr        #
+#    Updated: 2025/03/18 20:45:46 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
 
-SRCS = $(wildcard *.c)
+SRCS = $(wildcard *.c) $(wildcard utils/*.c)
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
@@ -60,7 +60,7 @@ $(NAME): $(OBJS)
 clean:
 	@echo "$(RED)Suppression des fichiers objets...$(RESET)"
 	@rm -rf $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) clean 2>/dev/null || true
+	@make --no-print-directory -C $(LIBFT_DIR) clean 2>/dev/null || true
 	@echo "$(GREEN)Nettoyage terminé !$(RESET)"
 
 fclean: clean

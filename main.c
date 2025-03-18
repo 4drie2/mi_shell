@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/18 19:37:21 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:30:11 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,6 @@ int	handle_user_input(char *input, t_state *state)
 	return (0);
 }
 
-/*
-
-- Add History va etre dans une fonction Handle User Input.
-- Faire l'init pour les PIDS, PIPE etc
-*/
-
-
 static int	init_state(t_state *state, char **envp)
 {
 	char	*shlvl;
@@ -84,8 +77,6 @@ static int	init_state(t_state *state, char **envp)
 	return (free(value), EXIT_SUCCESS);
 }
 
-
-
 static void	display_prompt(t_state *state)
 {
 	char *input;
@@ -109,7 +100,6 @@ static void	display_prompt(t_state *state)
 	}
 }
 
-
 int main(int ac, char **av, char **envp)
 {
 	t_state	shell;
@@ -120,4 +110,5 @@ int main(int ac, char **av, char **envp)
 		return(1);
 	}
 	display_prompt(&shell);
+	free_envp(shell.envp);
 }

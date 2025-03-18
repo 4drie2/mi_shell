@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/18 19:49:14 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:25:08 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,3 @@ int			is_empty_or_space(const char *str);
 	/* ----- main.c ------ */
 void		free_envp(char **envp);
 int			handle_user_input(char *input, t_state *state);
-static int	init_state(t_state *state, char **envp);
-static void	display_prompt(t_state *state);
