@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
+#    By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 17:09:20 by abidaux           #+#    #+#              #
-#    Updated: 2025/03/17 17:58:29 by abidaux          ###   ########.fr        #
+#    Updated: 2025/03/18 17:10:54 by pthuilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
 
 SRCS = $(wildcard *.c)
-OBJS = $(SRCS:.c=.o)
+OBJ_DIR = obj
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
@@ -38,7 +39,8 @@ $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_DIR)
 	@echo "$(GREEN)Libft compilée avec succès !$(RESET)"
 
-%.o: %.c
+$(OBJ_DIR)/%.o: %.c
+	@mkdir -p $(OBJ_DIR)
 	@echo "$(YELLOW)Compilation de $<...$(RESET)"
 	@$(CC) $(FULL_CFLAGS) -c $< -o $@
 
@@ -57,7 +59,7 @@ $(NAME): $(OBJS)
 
 clean:
 	@echo "$(RED)Suppression des fichiers objets...$(RESET)"
-	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) clean 2>/dev/null || true
 	@echo "$(GREEN)Nettoyage terminé !$(RESET)"
 
@@ -72,7 +74,8 @@ fclean: clean
 
 speed:
 	@echo "$(YELLOW)Mode Speed: Recompilation sans animation...$(RESET)"
-	@rm -f $(OBJS) $(NAME)
+	@rm -f $(NAME)
+	@rm -rf $(OBJ_DIR)
 	@$(MAKE) --no-print-directory $(OBJS)
 	@echo "$(YELLOW)Création de l'exécutable $(NAME)...$(RESET)"
 	@$(CC) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft -lreadline -lhistory

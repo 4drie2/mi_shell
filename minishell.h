@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/17 21:26:51 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/18 17:35:06 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ CMD = 6       // cmd (ex: "cat")
 ARG = 7       // arg or file after redirection
 */
 
-typedef struct s_token
-{
-	char	**str;
-	int		type;
-	struct s_token	*next;
-}	t_token;
 
 #include "libft/libft.h"
 #include "readline/history.h"
@@ -38,5 +32,34 @@ typedef struct s_token
 #include <stdlib.h>
 #include <limits.h>
 #include <unistd.h>
+#include <fcntl.h>
 
-void	parsing(char *input);
+typedef struct s_token
+{
+	char	**str;
+	int		type;
+	struct s_token	*next;
+}	t_token;
+
+typedef struct s_heredoc
+{
+	char	*tmp_filename;
+	char	*limiter;
+	int		tmp_fd;
+	char	**out_tmp_filename;
+}	t_heredoc;
+
+typedef struct s_Shell_State
+{
+	char		current_path[1024];
+	char		**envp;
+	int			last_exit_status;
+	int			num_pipes;
+	int			index;
+	int			o_stdout;
+	int			o_stdin;
+	int			*pipes;
+	pid_t		*pids;
+	t_heredoc	*hd;
+}	t_state;
+
