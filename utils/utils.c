@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 20:45:17 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/03/18 20:45:26 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/19 07:00:44 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static void	free_input_redirections(t_command *cmd)
+static void	free_input_redirection(t_command *cmd)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ static void	free_input_redirections(t_command *cmd)
 	cmd->in = NULL;
 }
 
-static void	free_output_redirections(t_command *cmd)
+static void	free_output_redirection(t_command *cmd)
 {
 	int	i;
 

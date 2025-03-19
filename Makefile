@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
+#    By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 17:09:20 by abidaux           #+#    #+#              #
-#    Updated: 2025/03/18 20:45:46 by abidaux          ###   ########.fr        #
+#    Updated: 2025/03/19 07:48:45 by pthuilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
 
-SRCS = $(wildcard *.c) $(wildcard utils/*.c)
+SRCS = $(wildcard *.c) $(wildcard utils/*.c) $(wildcard exec/*.c) $(wildcard exec/builtins/*.c)
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
@@ -40,7 +40,7 @@ $(LIBFT):
 	@echo "$(GREEN)Libft compilée avec succès !$(RESET)"
 
 $(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compilation de $<...$(RESET)"
 	@$(CC) $(FULL_CFLAGS) -c $< -o $@
 
