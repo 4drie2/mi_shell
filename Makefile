@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+         #
+#    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 17:09:20 by abidaux           #+#    #+#              #
-#    Updated: 2025/03/19 07:48:45 by pthuilli         ###   ########.fr        #
+#    Updated: 2025/03/19 16:54:15 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
 
-SRCS = $(wildcard *.c) $(wildcard utils/*.c) $(wildcard exec/*.c) $(wildcard exec/builtins/*.c)
+SRCS = $(wildcard *.c) $(wildcard utils/*.c)
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
@@ -73,10 +73,13 @@ fclean: clean
 	@echo "$(GREEN)Nettoyage complet terminé !$(RESET)"
 
 speed:
-	@echo "$(YELLOW)Mode Speed: Recompilation sans animation...$(RESET)"
+	@echo "$(YELLOW)⚡⚡⚡ make Speed: recopile les objs hors libft ⚡⚡⚡$(RESET)"
 	@rm -f $(NAME)
 	@rm -rf $(OBJ_DIR)
-	@$(MAKE) --no-print-directory $(OBJS)
+	@for src in $(SRCS); do \
+		mkdir -p $(OBJ_DIR)/$$(dirname $$src); \
+		$(CC) $(FULL_CFLAGS) -c $$src -o $(OBJ_DIR)/$${src%.c}.o; \
+	done
 	@echo "$(YELLOW)Création de l'exécutable $(NAME)...$(RESET)"
 	@$(CC) $(OBJS) -o $(NAME) -L$(LIBFT_DIR) -lft -lreadline -lhistory
 	@echo "$(GREEN)Compilation de $(NAME) terminée avec succès !$(RESET)"
