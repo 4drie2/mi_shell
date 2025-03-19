@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/19 19:58:48 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/19 20:05:59 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,4 +143,4 @@ int			handle_user_input(char *input, t_state *state);
 /* ----------------    exec     ----------------  */
 	/* -------- builtins --------- */
 		/* ----- env.c ------ */
-char		*join_key_value(const char *key, const char *value);
+char		*join_key_value(const char *key, const char *value); //test
