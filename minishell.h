@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/19 20:05:59 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:17:34 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ typedef struct s_fork_info
 */
 
 /* ---------------- origin folder ----------------  */
-char		*join_key_value(const char *key, const char *value);
 	/* -------- utils.c -------- */
 int			is_empty_or_space(const char *str);
 char		**set_env_var(char **envp, const char *key, const char *value);

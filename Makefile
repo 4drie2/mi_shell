@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
+#    By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 17:09:20 by abidaux           #+#    #+#              #
-#    Updated: 2025/03/19 16:54:15 by abidaux          ###   ########.fr        #
+#    Updated: 2025/03/19 20:23:50 by pthuilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
 
-SRCS = $(wildcard *.c) $(wildcard utils/*.c)
+SRCS = $(wildcard *.c) $(wildcard utils/*.c) $(wildcard exec/*.c) $(wildcard exec/builtins/*.c) $(wildcard parsing/*.c)
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

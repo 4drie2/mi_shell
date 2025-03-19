@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/19 20:00:20 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/19 20:29:06 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,15 @@ void	free_envp(char **envp)
 /*write exit quand exit : strace -e write bash*/
 int	handle_user_input(char *input, t_state *state)
 {
-	// t_command	*cmd;
+	t_command	*cmd;
 
-	if (!input || ft_strcmp(input, "exit") == 0
-			|| (*input == '"' && ft_strcmp(input + 1, "exit") == 0)
-			|| (*input == '\'' && ft_strcmp(input + 1, "exit") == 0))
-	{
-		ft_putstr_fd("exit\n", 1);
-		free_envp(state->envp);
-		free(input);
-		exit(EXIT_SUCCESS);
-	}
 	if (is_empty_or_space(input))
 		return (0);
-	// cmd = parse_input(input, state);
-	// if (!cmd)
-	// 	return (1);
-	// exec_shell(cmd, state);
-	// free_command_list(cmd);
+	cmd = parse_input(input, state);
+	if (!cmd)
+		return (1);
+	exec_shell(cmd, state);
+	free_command_list(cmd);
 	return (0);
 }
 
