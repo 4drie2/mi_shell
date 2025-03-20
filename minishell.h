@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/19 20:17:34 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/20 13:33:23 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,20 +126,25 @@ typedef struct s_fork_info
 */
 
 /* ---------------- origin folder ----------------  */
+/* ----------------    exec     ----------------  */
+	/* -------- builtins --------- */
+		/* ----- env.c ------ */
+char		*join_key_value(const char *key, const char *value);
+
+	/* -------- parse_utils.c -------- */
+void		unlink_all_heredocs(t_command *cmd);
+void		restore_and_close_fds(t_state *state);
+
 	/* -------- utils.c -------- */
 int			is_empty_or_space(const char *str);
 char		**set_env_var(char **envp, const char *key, const char *value);
 char		**copy_environment(char **envp);
 char		**realloc_tab(char **envp, char *new_entry);
 char		*search_in_local_env(char **envp, const char *key);
+
 	/* -------- utils_free.c -------- */
 void		free_command_list(t_command *cmd);
 
 	/* -------- main.c --------- */
 void		free_envp(char **envp);
 int			handle_user_input(char *input, t_state *state);
-
-/* ----------------    exec     ----------------  */
-	/* -------- builtins --------- */
-		/* ----- env.c ------ */
-char		*join_key_value(const char *key, const char *value); //test
