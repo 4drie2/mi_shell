@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/20 13:33:23 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/20 19:01:08 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,15 +127,90 @@ typedef struct s_fork_info
 
 /* ---------------- origin folder ----------------  */
 /* ----------------    exec     ----------------  */
+	/* -------- exec_shell.c -------- */
+void		exec_shell(t_command *cmd, t_state *state);
+
+	/* -------- exec_shell2.c -------- */
+int	check_if_empty_command(t_command *cmd, t_state *st);
+int	exec_if_builtin(t_command *cmd, t_state *st);
+
 	/* -------- builtins --------- */
 		/* ----- env.c ------ */
 char		*join_key_value(const char *key, const char *value);
 
+/* ----------------    parsing    ----------------  */
+	/* -------- parse_input.c -------- */
+t_command	*initialize_command(t_state *state);
+int			handle_commands(t_command **cmd, t_token *tokens,
+				t_state *state);
+void		cleanup_on_error(t_token *tokens, t_command *cmd,
+				int error_code, t_state *state);
+t_command	*parse_input(char *input, t_state *state);
+
+	/* -------- parse_input2.c -------- */
+int			validate_input(char *input);
+
+	/* -------- parsing.c -------- */
+char		*handle_special_var(char c, t_state *state);
+char		*expand_variable(char *input, int *i, t_state *state);
+void		debug_tokens(t_token *tokens);
+void		append_tokens(t_token **current, t_token *new_tokens);
+	/* -------- redir.c -------- */
+int			add_in_redir(t_command *cmd, t_redir_type type, const char *content);
+int			add_out_redir(t_command *cmd, t_redir_type type, const char *content);
+
+	/* -------- quotes.c ------ */
+int			check_unclosed_quotes(const char *input);
+char		*handle_double_quotes(const char *input, int *i, t_state *state);
+
+/* ----------------    utils     ----------------  */
 	/* -------- parse_utils.c -------- */
 void		unlink_all_heredocs(t_command *cmd);
 void		restore_and_close_fds(t_state *state);
 
-	/* -------- utils.c -------- */
+	/* -------- parse_utils2.c -------- */
+int			convert_tokens_to_command(t_command *cmd,
+				t_token *tokens, t_state *state);
+int			is_redirection(const char *content);
+int			is_file_tok(t_token *file_tok, t_state *state);
+int			check_redirections_conflicts(t_token *current, t_state *state);
+int			check_syntax_errors(t_token *tokens, t_state *state);
+
+	/* -------- parse_utils3.c -------- */
+int			is_command_incomplete(t_token *tokens, t_state *state);
+int			process_tokenizer(t_command **curr,
+				t_token **cur, int *arg_idx, t_state *state);
+
+	/* -------- quote_utils.c -------- */
+int			should_parse_as_special(const char *input, int i);
+int			handle_token(t_token **head, const char *input,
+				int *i, t_state *state);
+char		*handle_quotes(const char *input, int *i, char **envp, t_state *state);
+char		*handle_variable(const char *input, int *i, t_state *state);
+	/* -------- quote_utils2.c -------- */
+int			process_current_char(const char *input, int *i,
+			char **word, t_state *state);
+char		*parse_single_quote(const char *input, int *i);
+char		*parse_double_quote(const char *input, int *i,
+				char **envp, t_state *state);
+	/* -------- syntax_utils.c -------- */
+void		print_err_msg(char *cmd, char *path, char *msg);
+int			check_initial_pipe(t_token *current, t_state *state);
+int			check_pipes(t_token *current, t_state *state);
+int			check_redirections(t_token *current, t_state *state);
+int			check_invalid_tokens(t_token *current, t_state *state);
+
+	/* -------- syntax_utils2.c -------- */
+int			check_redirections_conflicts(t_token *current, t_state *state);
+int			check_syntax_errors(t_token *tokens, t_state *state);
+
+	/* -------- token_utils_create.c -------- */
+t_token		*create_and_add_token(char *content, t_token **head);
+
+	/* -------- token_utils.c -------- */
+t_token		*tokenize_input(const char *input, t_state *state);
+
+	/* -------- utils_env.c -------- */
 int			is_empty_or_space(const char *str);
 char		**set_env_var(char **envp, const char *key, const char *value);
 char		**copy_environment(char **envp);
@@ -144,6 +219,13 @@ char		*search_in_local_env(char **envp, const char *key);
 
 	/* -------- utils_free.c -------- */
 void		free_command_list(t_command *cmd);
+void		free_args(char **args);
+void		free_tokens(t_token *head);
+
+	/* -------- utils.c -------- */
+void		free_command(t_command *cmd);
+int			skip_spaces(const char *input, int i);
+int			is_empty_or_space(const char *str);
 
 	/* -------- main.c --------- */
 void		free_envp(char **envp);

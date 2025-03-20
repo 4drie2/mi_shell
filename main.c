@@ -6,9 +6,16 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/19 20:29:06 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:20:00 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// - Mauvais exit code (signaux)
+// - Mauvais free (en cas de d'execVE qui foire)
+// - "." et "./" (. | ./) (leak)
+// - (pipes par tout en meme temps mais un par un entre chaque commandes)
+// changer nom de certains malloc pour free(malloc) ou free(palestine)...
+// fusionner convert_tokens_to_commands et convert_tokens_to_command
 
 #include "minishell.h"
 
@@ -45,7 +52,7 @@ static int	init_state(t_state *state, char **envp)
 	char	*value;
 	int		i;
 
-	state->envp = copy_environment(envp); // a faire
+	state->envp = copy_environment(envp);
 	if (!state->envp)
 		return (EXIT_FAILURE);
 	shlvl = search_in_local_env(state->envp, "SHLVL"); // a faire

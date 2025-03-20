@@ -15,3 +15,36 @@ void	free_command_list(t_command *cmd)
 		free_command_list(temp);
 	}
 }
+void	free_args(char **args)
+{
+	int	i;
+
+	if (!args)
+		return ;
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		args[i] = NULL;
+		i++;
+	}
+	free(args);
+	args = NULL;
+}
+
+void	free_tokens(t_token *head)
+{
+	t_token	*tmp;
+
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		if (tmp->content)
+		{
+			free(tmp->content);
+			tmp->content = NULL;
+		}
+		free(tmp);
+	}
+}

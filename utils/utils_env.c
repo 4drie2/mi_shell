@@ -58,8 +58,8 @@ char	**copy_environment(char **envp)
 	copy = malloc(sizeof(char *) * (i + 1));
 	if (!copy)
 		return (NULL);
-	i = 0;
-	while (envp[i])
+	i = -1;
+	while (envp[++i])
 	{
 		copy[i] = ft_strdup(envp[i]);
 		if (!copy[i])
@@ -69,7 +69,6 @@ char	**copy_environment(char **envp)
 			free(copy);
 			return (NULL);
 		}
-		i++;
 	}
 	copy[i] = NULL;
 	return (copy);
