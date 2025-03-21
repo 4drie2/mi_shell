@@ -25,3 +25,16 @@ static char *get_executable_path(t_command *cmd, t_state *state)
 	}
 	return (path);
 }
+
+
+/* WHAT A FUCKING 🌟beautyfull🌟 FONCTION */
+static void	execute_cmd(char *path, char **args, char **envp)
+{
+	if (execve(path, args, envp) == -1)
+	{
+		perror(args[0]);
+		free(envp);
+		free(path);
+		exit(126);
+	}
+}
