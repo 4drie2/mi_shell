@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/20 16:20:00 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:40:52 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void	display_prompt(t_state *state)
 		if (!scrap_input)
 		{
 			ft_putstr_fd("exit\n", 2); // 1->2
+			// global_variable = 2 (envoyer signal 2, verifiable par echo $?)
 			break;
 		}
 		if (*scrap_input)
