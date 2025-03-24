@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/20 19:01:08 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/03/21 22:20:09 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ ARG = 7       // arg or file after redirection
 #include <limits.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 
 typedef struct s_heredoc
 {
