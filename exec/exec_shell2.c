@@ -13,14 +13,14 @@ int	exec_if_builtin(t_command *cmd, t_state *st)
 		restore_and_close_fds(st);
 		return (1);
 	}
-	signal(SIGING, child_cleanup_and_exit);
+	signal(SIGINT, child_cleanup_and_exit);
 	if (handle_all_redirections(cmd, st) < 0)
 	{
 		restore_and_close_fds(st);
 		return (1);
 	}
 	if (exec_builtins(cmd, st) != 2)
-		if (!ft_strcmp(cmd->args[0], '.'))
+		if (!ft_strcmp(cmd->args[0], "."))
 			st->last_exit_status = 127;
 	restore_and_close_fds(st);
 	reset_signals_after_execution();

@@ -3,21 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+         #
+#    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 17:09:20 by abidaux           #+#    #+#              #
-#    Updated: 2025/03/19 20:23:50 by pthuilli         ###   ########.fr        #
+#    Updated: 2025/03/24 15:57:19 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
+FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
+TOTAL_FILES = $(words $(SRCS))
+CURRENT_FILE = 0
 
 SRCS = $(wildcard *.c) $(wildcard utils/*.c) $(wildcard exec/*.c) $(wildcard exec/builtins/*.c) $(wildcard parsing/*.c)
 OBJ_DIR = obj
@@ -41,7 +43,8 @@ $(LIBFT):
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@echo "$(YELLOW)Compilation de $<...$(RESET)"
+	@$(eval CURRENT_FILE=$(shell expr $(CURRENT_FILE) + 1))
+	@printf "\r$(YELLOW)[$(CURRENT_FILE)/$(TOTAL_FILES)]$(RESET) Compilation: %-50s" "$<"
 	@$(CC) $(FULL_CFLAGS) -c $< -o $@
 
 

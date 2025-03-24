@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/21 22:20:09 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/24 19:26:54 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ ARG = 7       // arg or file after redirection
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <signal.h>
 
 typedef struct s_heredoc
 {
@@ -132,14 +133,26 @@ typedef struct s_fork_info
 void		exec_shell(t_command *cmd, t_state *state);
 
 	/* -------- exec_shell2.c -------- */
-int	check_if_empty_command(t_command *cmd, t_state *st);
-int	exec_if_builtin(t_command *cmd, t_state *st);
+int			check_if_empty_command(t_command *cmd, t_state *st);
+int			exec_if_builtin(t_command *cmd, t_state *st);
+
+	/* -------- exec_utils3.c -------- */
+void		execute_external(t_command *cmd, t_state *state);
+int			is_builtin(char *cmd);
+int			check_output_target(t_redir *redir, struct stat *st, t_state *state);
 
 	/* -------- builtins --------- */
 		/* ----- env.c ------ */
 char		*join_key_value(const char *key, const char *value);
 
 /* ----------------    parsing    ----------------  */
+	/* -------- heredoc_utils.c -------- */
+int	fork_one_heredoc(const char *lim, char **out_tmp,
+		t_command *cmd, t_state *st);
+int	handle_all_heredocs(t_command *cmd, t_state *state);
+void	free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st);
+void	child_read_heredoc(t_heredoc *hd, t_command *cmd, t_state *st);
+
 	/* -------- parse_input.c -------- */
 t_command	*initialize_command(t_state *state);
 int			handle_commands(t_command **cmd, t_token *tokens,
