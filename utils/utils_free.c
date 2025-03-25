@@ -1,9 +1,12 @@
 #include "../minishell.h"
 
 
- free_command_list:
-   Parcourt la liste chaînée de t_command et libère chaque noeud.
-
+/**
+ * Libère la mémoire occupée par une liste chaînée de commandes.
+ * Parcourt la liste et libère chaque nœud en appelant free_command().
+ *
+ * @param cmd Pointeur vers le premier élément de la liste de commandes à libérer
+ */
 void	free_command_list(t_command *cmd)
 {
 	t_command	*temp;
@@ -12,7 +15,7 @@ void	free_command_list(t_command *cmd)
 	{
 		temp = cmd;
 		cmd = cmd->next;
-		free_command_list(temp);
+		free_command(temp);
 	}
 }
 void	free_args(char **args)

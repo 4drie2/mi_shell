@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/24 19:26:54 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:26:34 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,10 @@ typedef struct s_fork_info
 
 /* ---------------- origin folder ----------------  */
 /* ----------------    exec     ----------------  */
+	/* -------- external_utils.c ---- */
+t_context	*get_signal(void);
+void	child_cleanup_and_exit(int signal);
+void	handle_no_cmd(t_command *cmd, t_state *state);
 	/* -------- exec_shell.c -------- */
 void		exec_shell(t_command *cmd, t_state *state);
 
