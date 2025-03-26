@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 17:31:01 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:34:11 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	child_cleanup_and_exit(int signal);
 void	handle_no_cmd(t_command *cmd, t_state *state);
 
 	/* -------- external_utils.c ---- */
-int	handle_all_redirection(t_command *cmd, t_state *state);
+int	handle_all_redirections(t_command *cmd, t_state *state);
 
 	/* -------- exec_shell.c -------- */
 void		exec_shell(t_command *cmd, t_state *state);
