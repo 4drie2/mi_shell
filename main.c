@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:46:42 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/26 18:22:26 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 // - Mauvais free (en cas de d'execVE qui foire)
 // - "." et "./" (. | ./) (leak)
 // - (pipes par tout en meme temps mais un par un entre chaque commandes)
-// changer nom de certains malloc pour free(malloc) ou free(palestine)...
-// fusionner convert_tokens_to_commands et convert_tokens_to_command
+// - changer nom de certains malloc pour free(malloc) ou free(palestine)...
+// - fusionner convert_tokens_to_commands et convert_tokens_to_command
+// - S'occuper dereset_signals_after_execution
 
 #include "minishell.h"
 
