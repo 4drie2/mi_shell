@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 18:10:09 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/26 19:26:20 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,17 +131,17 @@ typedef struct s_fork_info
 /* ----------------    exec     ----------------  */
 	/* -------- external_utils.c ---- */
 t_context	*get_signal(void);
-void	child_cleanup_and_exit(int signal);
-void	handle_no_cmd(t_command *cmd, t_state *state);
+void		child_cleanup_and_exit(int signal);
+void		handle_no_cmd(t_command *cmd, t_state *state);
 
 	/* -------- external_utils.c ---- */
-int	handle_all_redirections(t_command *cmd, t_state *state);
+int			handle_all_redirections(t_command *cmd, t_state *state);
 
 	/* -------- state.c ------------- */
-int	exec_builtins(t_command *cmd, t_state *state);
-void	handle_source_command(char **args, t_state *state);
-void	reset_state(t_state *state);
-int	check_synthax(t_command *start_cmd, t_state *state);
+int			exec_builtins(t_command *cmd, t_state *state);
+void		handle_source_command(char **args, t_state *state);
+void		reset_state(t_state *state);
+int			check_synthax(t_command *start_cmd, t_state *state);
 
 	/* -------- exec_shell.c -------- */
 void		exec_shell(t_command *cmd, t_state *state);
@@ -161,11 +161,11 @@ char		*join_key_value(const char *key, const char *value);
 
 /* ----------------    parsing    ----------------  */
 	/* -------- heredoc_utils.c -------- */
-int	fork_one_heredoc(const char *lim, char **out_tmp,
-		t_command *cmd, t_state *st);
-int	handle_all_heredocs(t_command *cmd, t_state *state);
-void	free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st);
-void	child_read_heredoc(t_heredoc *hd, t_command *cmd, t_state *st);
+int			fork_one_heredoc(const char *lim, char **out_tmp,
+			t_command *cmd, t_state *st);
+int			handle_all_heredocs(t_command *cmd, t_state *state);
+void		free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st);
+void		child_read_heredoc(t_heredoc *hd, t_command *cmd, t_state *st);
 
 	/* -------- parse_input.c -------- */
 t_command	*initialize_command(t_state *state);
@@ -258,3 +258,9 @@ int			is_empty_or_space(const char *str);
 	/* -------- main.c --------- */
 void		free_envp(char **envp);
 int			handle_user_input(char *input, t_state *state);
+
+	/* -------- main.c --------- */
+void		setup_signals_for_heredoc(void);
+void		setup_signals_for_execution(void);
+void		handle_sigint(int signo);
+void		setup_signals(void);
