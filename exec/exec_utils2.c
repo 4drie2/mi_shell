@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:47:41 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 17:28:46 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:32:12 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int	process_output_redirections(t_command *cmd, t_state *state)
  * @param state État global du shell
  * @return 0 en cas de succès, -1 si une des redirections échoue
  */
-int	handle_all_redirection(t_command *cmd, t_state *state)
+int	handle_all_redirections(t_command *cmd, t_state *state)
 {
 	if (process_input_redirection(cmd, state) == -1)
 		return (-1);
