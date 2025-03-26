@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 17:34:11 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/26 18:10:09 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,12 @@ void	handle_no_cmd(t_command *cmd, t_state *state);
 
 	/* -------- external_utils.c ---- */
 int	handle_all_redirections(t_command *cmd, t_state *state);
+
+	/* -------- state.c ------------- */
+int	exec_builtins(t_command *cmd, t_state *state);
+void	handle_source_command(char **args, t_state *state);
+void	reset_state(t_state *state);
+int	check_synthax(t_command *start_cmd, t_state *state);
 
 	/* -------- exec_shell.c -------- */
 void		exec_shell(t_command *cmd, t_state *state);
