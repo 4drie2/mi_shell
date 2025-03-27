@@ -84,10 +84,19 @@ void	cleanup_on_error(t_token *tokens, t_command *cmd,
 		free_command_list(cmd);
 }
 
-/*
-** Analyse l'entrée utilisateur et construit la structure de commande.
-** Retourne un pointeur vers la commande, ou NULL en cas d'échec.
-*/
+/**
+ * Analyse une chaîne d'entrée et la convertit en structure de commande.
+ *
+ * Effectue plusieurs étapes:
+ * - Validation syntaxique de l'entrée ;
+ * - Tokenisation et validation des tokens ;
+ * - Construction de la structure de commande ;
+ * - Traitement des commandes et de leurs arguments ;
+ *
+ * @param input Chaîne d'entrée à analyser
+ * @param state État global du shell
+ * @return Structure de commande allouée en cas de succès, NULL sinon
+ */
 t_command	*parse_input(char *input, t_state *state)
 {
 	t_token		*tokens;

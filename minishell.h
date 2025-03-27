@@ -177,7 +177,9 @@ void		cleanup_on_error(t_token *tokens, t_command *cmd,
 t_command	*parse_input(char *input, t_state *state);
 
 	/* -------- parse_input2.c -------- */
+int			convert_tokens_to_commands(t_command **cmd, t_token *tokens, t_state *state);
 int			validate_input(char *input);
+t_token		*tokenize_and_validate(char *input, t_state *state);
 
 	/* -------- parsing.c -------- */
 char		*handle_special_var(char c, t_state *state);
