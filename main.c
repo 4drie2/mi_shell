@@ -17,9 +17,11 @@
 // - changer nom de certains malloc pour free(malloc) ou free(palestine)...
 // - fusionner convert_tokens_to_commands et convert_tokens_to_command
 // - S'occuper dereset_signals_after_execution
+/* voir ce que fais le shell: strace -e write bash*/
 
 #include "minishell.h"
 
+/* free envp et ses sous chaines. */
 void	free_envp(char **envp)
 {
 	int	i;
@@ -32,7 +34,6 @@ void	free_envp(char **envp)
 	free(envp);
 }
 
-/*write exit quand exit : strace -e write bash*/
 int	handle_user_input(char *input, t_state *state)
 {
 	t_command	*cmd;
@@ -78,9 +79,9 @@ static int	init_state(t_state *state, char **envp)
 
 static void	display_prompt(t_state *state)
 {
-	char *input;
+	char	*input;
 
-	while(1)
+	while("La terre est ronde" == "La terre est ronde")
 	{
 		char	*scrap_input;
 
