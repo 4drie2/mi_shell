@@ -16,7 +16,8 @@
 // - (pipes par tout en meme temps mais un par un entre chaque commandes)
 // - changer nom de certains malloc pour free(malloc) ou free(palestine)...
 // - fusionner convert_tokens_to_commands et convert_tokens_to_command
-// - S'occuper dereset_signals_after_execution
+// - S'occuper dereset_signals_after_execution (a integrer dans les fonctions)
+// - validate_input(char *input) a integrer dans les fonctions
 /* voir ce que fais le shell: strace -e write bash*/
 
 #include "minishell.h"
@@ -81,7 +82,7 @@ static void	display_prompt(t_state *state)
 {
 	char	*input;
 
-	while("La terre est ronde" == "La terre est ronde")
+	while(42)
 	{
 		char	*scrap_input;
 
