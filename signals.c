@@ -29,7 +29,7 @@ void	setup_signals_for_heredoc(void)
 	struct sigaction	sa_int;
 
 	sigemptyset(&sa_int.sa_mask);
-	sa_int.sa_flags = 0;./
+	sa_int.sa_flags = 0;
 	sa_int.sa_handler = SIG_DFL;
 	sigaction(SIGINT, &sa_int, NULL);
 	sigaction(SIGQUIT, &sa_int, NULL);

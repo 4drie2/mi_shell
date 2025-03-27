@@ -33,6 +33,7 @@ ARG = 7       // arg or file after redirection
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 #include <signal.h>
 
 typedef struct s_heredoc
@@ -259,7 +260,8 @@ int			is_empty_or_space(const char *str);
 void		free_envp(char **envp);
 int			handle_user_input(char *input, t_state *state);
 
-	/* -------- main.c --------- */
+	/* -------- signals.c --------- */
+void		reset_signals_after_execution(void);
 void		setup_signals_for_heredoc(void);
 void		setup_signals_for_execution(void);
 void		handle_sigint(int signo);
