@@ -73,20 +73,14 @@ static int	process_tokens(const char *input, t_token **token_list,
 		if (!input[i])
 			break ;
 		if (input[i] == '<' || input[i] == '>')
-		{
 			if (handle_redirection_tok(input, &i, token_list) == -1)
 				return (-1);
-		}
 		else if (input[i] == '|')
-		{
 			if (handle_pipe_tok(&i, token_list) == -1)
 				return (-1);
-		}
 		else
-		{
 			if (handle_token(token_list, input, &i, state) == -1)
 				return (-1);
-		}
 	}
 	return (0);
 }
