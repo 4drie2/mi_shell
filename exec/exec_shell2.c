@@ -17,16 +17,10 @@ int	exec_if_builtin(t_command *cmd, t_state *st)
 	if (!cmd->args[0] || !is_builtin(cmd->args[0]))
 		return (0);
 	if (handle_all_heredocs(cmd, st) < 0)
-	{
-		restore_and_close_fds(st);
-		return (1);
-	}
+		return (restore_and_close_fds(st), 1);
 	signal(SIGINT, child_cleanup_and_exit);
 	if (handle_all_redirections(cmd, st) < 0)
-	{
-		restore_and_close_fds(st);
-		return (1);
-	}
+		return (restore_and_close_fds(st), 1);
 	if (exec_builtins(cmd, st) != 2)
 		if (!ft_strcmp(cmd->args[0], "."))
 			st->last_exit_status = 127;
