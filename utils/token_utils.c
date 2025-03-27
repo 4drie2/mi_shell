@@ -61,6 +61,19 @@ static int	handle_pipe_tok(int *i, t_token **token_list)
 	return (0);
 }
 
+/**
+ * Analyse une chaîne d'entrée et génère une liste de tokens.
+ *
+ * Parcourt la chaîne caractère par caractère pour identifier les tokens suivants:
+ * - Redirections (< et >)
+ * - Pipes (|)
+ * - Autres tokens (commandes, arguments, etc.)
+ *
+ * @param input Chaîne d'entrée à analyser
+ * @param token_list Pointeur vers la liste de tokens à construire
+ * @param state État global du shell
+ * @return 0 en cas de succès, -1 en cas d'erreur
+ */
 static int	process_tokens(const char *input, t_token **token_list,
 	t_state *state)
 {
@@ -91,6 +104,20 @@ static int	process_tokens(const char *input, t_token **token_list,
 	return (0);
 }
 
+/**
+ * Tokenise une chaîne d'entrée en une liste de tokens.
+ *
+ * Cette fonction effectue deux vérifications principales avant la tokenisation:
+ * 1. Vérifie si toutes les citations (guillemets) sont correctement fermées
+ * 2. Exécute le traitement des tokens sur la chaîne d'entrée
+ *
+ * En cas d'erreur à n'importe quelle étape, la fonction nettoie les ressources
+ * et renvoie NULL.
+ *
+ * @param input Chaîne d'entrée à tokeniser
+ * @param state État global du shell
+ * @return Liste de tokens en cas de succès, NULL en cas d'erreur
+ */
 t_token	*tokenize_input(const char *input, t_state *state)
 {
 	t_token	*token_list;
