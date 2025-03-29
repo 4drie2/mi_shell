@@ -115,13 +115,13 @@ static void	display_prompt(t_state *state)
 	}
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	t_state	shell;
+	t_state	state;
 
 	(void) ac, (void) av;
-	if (init_state(&shell, envp) == 1)
+	if (init_state(&state, envp) == 1)
 		return(1);
-	display_prompt(&shell);
-	free_envp(shell.envp);
+	display_prompt(&state);
+	free_envp(state.envp);
 }
