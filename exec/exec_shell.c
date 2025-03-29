@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:44:34 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:47:03 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/29 23:39:33 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	exec_shell(t_command *cmd, t_state *state)
 	else if (!cmd->is_pipe)
 		exec_single_command(cmd, state);
 	else
-		handle_multiples_pipes(cmd, state);
+		handle_multiple_pipes(cmd, state);
 }
