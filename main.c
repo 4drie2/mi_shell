@@ -10,15 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// - Mauvais exit code (signaux)
-// - Mauvais free (en cas de d'execVE qui foire)
-// - "." et "./" (. | ./) (leak)
-// - (pipes par tout en meme temps mais un par un entre chaque commandes)
-// - changer nom de certains malloc pour free(malloc) ou free(palestine)...
-// - fusionner convert_tokens_to_commands et convert_tokens_to_command
-// - S'occuper dereset_signals_after_execution (a integrer dans les fonctions)
-// - validate_input(char *input) a integrer dans les fonctions
-/* voir ce que fais le shell: strace -e write bash*/
+/**
+ * ---------- TO DO LIST ----------
+ * - Mauvais exit code (signaux)
+ * - Mauvais free (en cas de d'execVE qui foire)
+ * - "." et "./" (. | ./) (leak)
+ * - (pipes par tout en meme temps mais un par un entre chaque commandes)
+ * - changer nom de certains malloc pour free(malloc) ou free(palestine)..
+ * - fusionner convert_tokens_to_commands et convert_tokens_to_command
+ * - S'occuper dereset_signals_after_execution (a integrer dans les fonctions)
+ * - validate_input(char *input) a integrer dans les fonctions
+ *
+ * ---------- ASTUCES -------------
+ * voir ce que fais le shell: strace -e write bash
+ */
 
 #include "minishell.h"
 
@@ -49,18 +54,26 @@ int	handle_user_input(char *input, t_state *state)
 	return (0);
 }
 
+/**
+ * Initialise la structure d'état du shell.
+ *
+ * Configure l'environnement, incrémente SHLVL, et initialise les autres
+ * champs de la structure d'état.
+ *
+ * @param state Pointeur vers la structure d'état à initialiser
+ * @param envp Environnement du processus parent
+ * @return EXIT_SUCCESS en cas de réussite, EXIT_FAILURE sinon
+ */
 static int	init_state(t_state *state, char **envp)
 {
 	char	*shlvl;
 	char	*value;
-	int		i;
 
 	state->envp = copy_environment(envp);
 	if (!state->envp)
 		return (EXIT_FAILURE);
 	shlvl = search_in_local_env(state->envp, "SHLVL");
-	i = ft_atoi(shlvl) + 1;
-	value = ft_itoa(i);
+	value = ft_itoa(ft_atoi(shlvl) + 1);
 	state->envp = set_env_var(state->envp, "SHLVL", value);
 	state->last_exit_status = 0;
 	state->num_pipes = 0;
@@ -108,9 +121,7 @@ int main(int ac, char **av, char **envp)
 
 	(void) ac, (void) av;
 	if (init_state(&shell, envp) == 1)
-	{
 		return(1);
-	}
 	display_prompt(&shell);
 	free_envp(shell.envp);
 }

@@ -59,6 +59,19 @@ char	**set_env_var(char **envp, const char *key, const char *value)
 	return (envp);
 }
 
+/**
+ * Crée une copie complète des variables d'environnement.
+ *
+ * Cette fonction:
+ * 1. Compte le nombre de variables d'environnement
+ * 2. Alloue la mémoire nécessaire pour le tableau de copies
+ * 3. Duplique chaque chaîne individuellement
+ * 4. Termine le tableau par NULL
+ * 5. Gère proprement les erreurs d'allocation
+ *
+ * @param envp Tableau de chaînes contenant l'environnement à copier
+ * @return Un nouveau tableau de chaînes ou NULL en cas d'erreur
+ */
 char	**copy_environment(char **envp)
 {
 	int		i;
