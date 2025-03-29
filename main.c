@@ -58,10 +58,10 @@ static int	init_state(t_state *state, char **envp)
 	state->envp = copy_environment(envp);
 	if (!state->envp)
 		return (EXIT_FAILURE);
-	shlvl = search_in_local_env(state->envp, "SHLVL"); // a faire
+	shlvl = search_in_local_env(state->envp, "SHLVL");
 	i = ft_atoi(shlvl) + 1;
 	value = ft_itoa(i);
-	state->envp = set_env_var(state->envp, "SHLVL", value); // a faire
+	state->envp = set_env_var(state->envp, "SHLVL", value);
 	state->last_exit_status = 0;
 	state->num_pipes = 0;
 	state->index = 0;
