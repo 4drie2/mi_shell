@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/29 22:38:34 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/29 23:36:00 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,11 @@ int			check_output_target(t_redir *redir, struct stat *st, t_state *state);
 	/* -------- external_command.c -------- */
 void		handle_external_cmd(t_command *cmd, char **argv, t_state *state);
 
+	/* -------- multiples_cmd.c ----------- */
+void	handle_mutiple_pipes(t_command *start_cmd, t_state *state);
+void	execute_command(t_command *cmd, t_state *state);
+void	execute_builtin(t_command *cmd, t_state *temp_state);
+
 	/* -------- builtins --------- */
 		/* ----- env.c ------ */
 char		*join_key_value(const char *key, const char *value);
@@ -189,13 +194,14 @@ char		*handle_special_var(char c, t_state *state);
 char		*expand_variable(char *input, int *i, t_state *state);
 void		debug_tokens(t_token *tokens);
 void		append_tokens(t_token **current, t_token *new_tokens);
-	/* -------- redir.c -------- */
-int			add_in_redir(t_command *cmd, t_redir_type type, const char *content);
-int			add_out_redir(t_command *cmd, t_redir_type type, const char *content);
 
 	/* -------- quotes.c ------ */
 int			check_unclosed_quotes(const char *input);
 char		*handle_double_quotes(const char *input, int *i, t_state *state);
+
+	/* -------- redir.c -------- */
+int			add_in_redir(t_command *cmd, t_redir_type type, const char *content);
+int			add_out_redir(t_command *cmd, t_redir_type type, const char *content);
 
 /* ----------------    utils     ----------------  */
 	/* -------- parse_utils.c -------- */
