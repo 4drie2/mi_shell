@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/29 23:36:00 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/29 23:38:48 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ int			check_output_target(t_redir *redir, struct stat *st, t_state *state);
 void		handle_external_cmd(t_command *cmd, char **argv, t_state *state);
 
 	/* -------- multiples_cmd.c ----------- */
-void	handle_mutiple_pipes(t_command *start_cmd, t_state *state);
+void	handle_multiple_pipes(t_command *start_cmd, t_state *state);
 void	execute_command(t_command *cmd, t_state *state);
 void	execute_builtin(t_command *cmd, t_state *temp_state);
 

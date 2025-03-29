@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:40:04 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/29 23:32:23 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/29 23:38:26 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	execute_command(t_command *cmd, t_state *state)
  * @param start_cmd Pointeur vers la première commande de la liste chaînée
  * @param state État global du shell contenant les ressources
  */
-void	handle_mutiple_pipes(t_command *start_cmd, t_state *state)
+void	handle_multiple_pipes(t_command *start_cmd, t_state *state)
 {
 	state->num_pipes = allocate_and_create_pipes(start_cmd,
 		&state->pipes, &state->pids, state);
