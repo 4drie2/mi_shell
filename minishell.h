@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 19:26:20 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/29 22:38:34 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ int			exec_if_builtin(t_command *cmd, t_state *st);
 void		execute_external(t_command *cmd, t_state *state);
 int			is_builtin(char *cmd);
 int			check_output_target(t_redir *redir, struct stat *st, t_state *state);
+
+	/* -------- external_command.c -------- */
+void		handle_external_cmd(t_command *cmd, char **argv, t_state *state);
 
 	/* -------- builtins --------- */
 		/* ----- env.c ------ */
