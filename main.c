@@ -22,7 +22,7 @@
 
 #include "minishell.h"
 
-/* free envp et ses sous chaines. */
+/* free envp et toutes ses sous chaines. */
 void	free_envp(char **envp)
 {
 	int	i;
