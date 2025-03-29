@@ -120,9 +120,9 @@ static int	process_tokens(const char *input, t_token **token_list,
  */
 t_token	*tokenize_input(const char *input, t_state *state)
 {
-	t_token	*token_list;
+	t_token	*tokens;
 
-	token_list = NULL;
+	tokens = NULL;
 
 	if (check_unclosed_quotes(input))
 	{
@@ -130,10 +130,10 @@ t_token	*tokenize_input(const char *input, t_state *state)
 		state->last_exit_status = 2;
 		return (NULL);
 	}
-	if (process_tokens(input, &token_list, state) == -1)
+	if (process_tokens(input, &tokens, state) == -1)
 	{
-		free_tokens(token_list);
+		free_tokens(tokens);
 		return (NULL);
 	}
-	return (token_list);
+	return (tokens);
 }
