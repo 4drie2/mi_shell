@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/29 23:38:48 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/30 19:09:07 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,13 @@ void		exec_shell(t_command *cmd, t_state *state);
 	/* -------- exec_shell2.c -------- */
 int			check_if_empty_command(t_command *cmd, t_state *st);
 int			exec_if_builtin(t_command *cmd, t_state *st);
+
+	/* -------- exec_utils3.c -------- */
+void		setup_pipes(int pipefds[][2], t_state *state);
+void		close_pipes(int	pipefds[][2], int numpipes);
+void		print_error_and_exit(char *cmd, char *path, char *msg, int exit_code);
+int			print_error(char *cmd, char *path, char *msg, int exit_code);
+char		*validate_path(char *cmd_path);
 
 	/* -------- exec_utils3.c -------- */
 void		execute_external(t_command *cmd, t_state *state);
