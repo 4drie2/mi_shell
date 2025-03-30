@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:47:41 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 17:34:13 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/03/30 19:10:42 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ static int	handle_input_redirection(t_redir *redir, t_state *state)
 		return (-1);
 	fd = open(redir->target, O_RDONLY);
 	if (fd < 0)
-		return (handle_acces_error(redir->target, state));
+		return (handle_access_error(redir->target, state));
 	if (dup2(fd, STDIN_FILENO) < 0)
 	{
-		prerror("dup2");
+		perror("dup2");
 		close(fd);
 		return (-1);
 	}
