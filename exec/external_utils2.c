@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   external_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 10:38:56 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/04/01 10:42:08 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/01 10:47:22 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	cleanup_state(t_state *st)
 	}
 	if (st->pipes)
 	{
-		close_pipes(st->num_pipes, (int (*)[2])st->pipes);
+		close_all_pipes(st->num_pipes, (int (*)[2])st->pipes);
 		free(st->pipes);
 		st->pipes = NULL;
 	}
