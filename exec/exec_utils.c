@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:52:05 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/30 19:07:56 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/01 09:37:53 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	print_error(char *cmd, char *path, char *msg, int exit_code)
  * @param cmd_path Chemin de la commande à valider
  * @return Une copie du chemin si valide, NULL sinon
  */
-char	*validate_path(char *cmd_path)
+char	*valide_path(char *cmd_path)
 {
 	struct stat	path_stat;
 

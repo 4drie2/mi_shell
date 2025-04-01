@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/30 19:51:55 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/01 10:40:05 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,10 @@ void		handle_no_cmd(t_command *cmd, t_state *state);
 	/* -------- external_utils.c ---- */
 int			handle_all_redirections(t_command *cmd, t_state *state);
 
+	/* -------- external_utils2.c ---- */
+void		cleanup_command(t_command *cmd);
+void		cleanup_heredoc(t_heredoc *hd);
+void		cleanup_state(t_state *st);
 	/* -------- state.c ------------- */
 int			exec_builtins(t_command *cmd, t_state *state);
 void		handle_source_command(char **args, t_state *state);
@@ -151,21 +155,31 @@ void		exec_shell(t_command *cmd, t_state *state);
 int			check_if_empty_command(t_command *cmd, t_state *st);
 int			exec_if_builtin(t_command *cmd, t_state *st);
 
-	/* -------- exec_utils3.c -------- */
+	/* -------- exec_utils.c -------- */
 void		setup_pipes(int pipefds[][2], t_state *state);
 void		close_pipes(int	pipefds[][2], int numpipes);
 void		print_error_and_exit(char *cmd, char *path, char *msg, int exit_code);
 int			print_error(char *cmd, char *path, char *msg, int exit_code);
-char		*validate_path(char *cmd_path);
+char		*valide_path(char *cmd_path);
 
 	/* -------- exec_utils3.c -------- */
 void		execute_external(t_command *cmd, t_state *state);
 int			is_builtin(char *cmd);
 int			check_output_target(t_redir *redir, struct stat *st, t_state *state);
 
+	/* -------- exec_utils4.c -------- */
+int			handle_output_redirection(t_redir *redir, t_state *state);
+void		handle_command_error(t_state *state, char *cmd, int error_code);
+int			count_commands(t_command *start_cmd);
 	/* -------- external_command.c -------- */
 void		handle_external_cmd(t_command *cmd, char **argv, t_state *state);
 
+	/* -------- external_command.c -------- */
+void		close_child_fds(t_state *st);
+void		init_child_context(t_command *cmd, t_state *st);
+void		process_heredocs_or_fail(t_command *cmd, t_state *st, char *path);
+void		process_redirections_or_fail(t_command *cmd, t_state *st);
+void		execute_binary_or_fail(t_command *cmd, t_state *st, char *path);
 	/* -------- multiples_cmd.c ----------- */
 void		handle_multiple_pipes(t_command *start_cmd, t_state *state);
 void		execute_command(t_command *cmd, t_state *state);
@@ -173,10 +187,9 @@ void		execute_builtin(t_command *cmd, t_state *temp_state);
 
 	/* -------- path.c -------------------- */
 char		*get_command_path(char *cmd, t_state *state);
-int			handle_acces_error(char *target, t_state *state);
-int			is_path_abolute_or_relative(char *cmd);
+int			handle_access_error(char *target, t_state *state);
+int			is_path_absolute_or_relative(char *cmd);
 int			validate_command_path(char *cmd, char **path, t_state *st, bool *check);
-
 	/* -------- builtins --------- */
 		/* ----- env.c ------ */
 char		*join_key_value(const char *key, const char *value);

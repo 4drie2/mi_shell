@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   external_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:44:56 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:44:57 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/01 10:38:26 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	child_cleanup_and_exit(int signal)
 {
 	t_context	*ctx;
 
-	ctx = get_signal_context();
+	ctx = get_signal();
 	cleanup_command(ctx->cmd);
 	cleanup_heredoc(ctx->state->hd);
 	cleanup_state(ctx->state);
@@ -40,7 +40,7 @@ static void	child_no_cmd(t_command *cmd, t_state *st)
 {
 	t_context	*context;
 
-	context = get_signal_context();
+	context = get_signal();
 	context->cmd = cmd;
 	context->state = st;
 	if (handle_all_heredocs(cmd, st) < 0)
@@ -50,7 +50,7 @@ static void	child_no_cmd(t_command *cmd, t_state *st)
 		exit(EXIT_FAILURE);
 	}
 	signal(SIGINT, child_cleanup_and_exit);
-	if (handle_all_redirection(cmd, st) < 0)
+	if (handle_all_redirections(cmd, st) < 0)
 	{
 		free_envp(st->envp);
 		free_command_list(cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 19:11:41 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/30 19:49:52 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/01 10:34:36 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*get_command_path(char *cmd, t_state *state)
  * @param state Structure d'état du shell pour mettre à jour le statut de sortie
  * @return Toujours -1 pour indiquer une erreur
  */
-int	handle_acces_error(char *target, t_state *state)
+int	handle_access_error(char *target, t_state *state)
 {
 	if (errno == EACCES)
 	{
@@ -104,7 +104,7 @@ int	handle_acces_error(char *target, t_state *state)
  * @param cmd La commande à analyser
  * @return 1 si le chemin est absolu ou relatif, 0 sinon
  */
-int	is_path_abolute_or_relative(char *cmd)
+int	is_path_absolute_or_relative(char *cmd)
 {
 	if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'))
 		return (1);
