@@ -29,7 +29,7 @@ int	handle_single_command(t_command **cmd,
 	signal(SIGINT, child_cleanup_and_exit);
 	fi->pids[i] = fork();
 	if (fi->pids[i] == -1)
-		return ((void)perror("fork"), -1);
+		return (perror("fork"), -1);
 	if (fi->pids[i] == 0)
 		child_process(*cmd, st, fi, i);
 	reset_signals_after_execution();
