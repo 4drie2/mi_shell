@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiples_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:40:04 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/30 18:50:27 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/01 13:28:46 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	execute_builtin_part1(t_command *cmd, t_state *temp_state)
 			while (cmd->prev)
 				cmd = cmd->prev;
 			free_command_list(cmd);
-			print_err_and_exit("exit: ", "", "too many arguments\n", 1);
+			print_error_and_exit("exit: ", "", "too many arguments\n", 1);
 		}
 		handle_exit(cmd, temp_state);
 	}
@@ -66,8 +66,6 @@ static void	execute_builtin_part2(t_command *cmd, t_state *temp_state)
 		handle_echo_command(cmd, temp_state);
 	else if (!ft_strcmp(cmd->args[0], "unset"))
 		handle_unset_command(cmd->args, temp_state->envp);
-	else if (!ft_strcmp(cmd->args[0], "neosnitch"))
-		handle_noesnitch_command(cmd->args, temp_state);
 }
 
 /**
@@ -104,7 +102,7 @@ void	execute_command(t_command *cmd, t_state *state)
 	t_state	temp_state;
 	char	**temp_env;
 
-	handle_redirection_or_exit(cmd, state);
+	handle_redirections_or_exit(cmd, state);
 	copy_environment_or_exit(state, &temp_state, &temp_env);
 	handle_no_args_or_exit(cmd, state, temp_env);
 	if (is_builtin(cmd->args[0]))

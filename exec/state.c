@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   state.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:35:34 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 18:09:48 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/01 11:30:15 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	exec_builtins(t_command *cmd, t_state *state)
 		return (handle_unset_command(cmd->args, state->envp), 1);
 	else if (!ft_strcmp(cmd->args[0], "export"))
 		return (handle_export_command(cmd->args, state), 1);
-	else if (!ft_strcmp(cmd->args[0], "neosnitch"))
-		return (handle_neosnitch_command(cmd->args, state), 1);
 	else if (!ft_strcmp(cmd->args[0], "."))
 		return (handle_source_command(cmd->args, state), 1);
 	return (0);

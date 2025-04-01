@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/01 10:40:05 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/01 13:44:25 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ ARG = 7       // arg or file after redirection
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <signal.h>
+
+#define PATH_MAX 4096
 
 typedef struct s_heredoc
 {
@@ -174,25 +176,81 @@ int			count_commands(t_command *start_cmd);
 	/* -------- external_command.c -------- */
 void		handle_external_cmd(t_command *cmd, char **argv, t_state *state);
 
-	/* -------- external_command.c -------- */
+	/* -------- external_command2.c -------- */
 void		close_child_fds(t_state *st);
 void		init_child_context(t_command *cmd, t_state *st);
 void		process_heredocs_or_fail(t_command *cmd, t_state *st, char *path);
 void		process_redirections_or_fail(t_command *cmd, t_state *st);
 void		execute_binary_or_fail(t_command *cmd, t_state *st, char *path);
+	/* -------- forking.c -------- */
+int			handle_single_command(t_command **cmd,
+				t_state *st, t_fork_info *fi, int i);
+void		child_process(t_command *cmd, t_state *st,
+				t_fork_info *fi, int i);
+void		handle_empty_cmd(t_command *cmd, t_state *st);
 	/* -------- multiples_cmd.c ----------- */
 void		handle_multiple_pipes(t_command *start_cmd, t_state *state);
 void		execute_command(t_command *cmd, t_state *state);
 void		execute_builtin(t_command *cmd, t_state *temp_state);
 
+	/* -------- multiples_cmd2.c ----------- */
+void		handle_redirections_or_exit(t_command *cmd, t_state *st);
+void		copy_environment_or_exit(t_state *st,
+				t_state *temp_st, char ***temp_env);
+void		handle_no_args_or_exit(t_command *cmd,
+				t_state *st, char **temp_env);
+	/* -------- multiples_utils.c ----------- */
+int			allocate_pipes_pids(int num_cmds, int **pipes, pid_t **pids, t_state *state);
+int			create_pipes(int num_pipes, int pipes[][2]);
+int			fork_and_execute(t_command *cmd, t_state *state,
+				int pipes[][2], pid_t *pids);
+void		close_all_pipes(int num_pipes, int pipes[][2]);
+void		wait_children(int num_cmds, pid_t *pids, t_state *state);
 	/* -------- path.c -------------------- */
 char		*get_command_path(char *cmd, t_state *state);
 int			handle_access_error(char *target, t_state *state);
 int			is_path_absolute_or_relative(char *cmd);
 int			validate_command_path(char *cmd, char **path, t_state *st, bool *check);
+	/* -------- path.c -------------------- */
+int			allocate_and_create_pipes(t_command *start_cmd,
+				int **pipes, pid_t **pids, t_state *state);
+void		execute_and_cleanup(t_command *start_cmd,
+				t_state *state, int (*pipes)[2], pid_t *pids);
 	/* -------- builtins --------- */
+		/* ----- cd_utils.c ------ */
+int			check_cd_path_permission(char *path);
+int			check_cd_path(char *path, t_state *state);
+void		handle_cd_command(char **argv, t_state *state);
+		/* ----- cd.c ------ */
+char		*get_cd_path(char **argv, t_state *state);
+void		update_env_vars(t_state *state);
+int			check_cd_args(char **argv);
+int			check_cd_path_exists(char *path);
+int			check_cd_path_dir(char *path);
+		/* ----- echo.c ------ */
+void		handle_echo_command(t_command *cmd, t_state *state);
+
 		/* ----- env.c ------ */
+int			has_equals_as(char *str, char *ui);
+void		handle_env_command(char **envp, t_state *state);
 char		*join_key_value(const char *key, const char *value);
+void		replace_env_entry(char **envp, int index, const char *key,
+				const char *value);
+		/* ----- exit.c ------ */
+void		handle_exit(t_command *cmd, t_state *st);
+		/* ----- export_utils.c ------ */
+void		print_sorted_env(char **envp);
+void		handle_export_command(char **argv, t_state *state);
+		/* ----- export_utils2.c ------ */
+char		*normalize_spaces(const char *str);
+		/* ----- export.c ------ */
+int			is_valid_identifier(const char *str);
+char		**get_sorted_env(char **envp);
+int			has_leading_space(const char *str);
+		/* ----- pwd.c ------ */
+void		handle_pwd_command(t_state *state);
+		/* ----- unset.c ------ */
+void		handle_unset_command(char **argv, char **envp);
 
 /* ----------------    parsing    ----------------  */
 	/* -------- heredoc_utils.c -------- */
