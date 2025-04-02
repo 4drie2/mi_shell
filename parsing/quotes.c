@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:45:47 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:45:49 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 07:32:19 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	check_unclosed_quotes(const char *input)
 	return (0);
 }
 
-static char *handle_escaped_quote(int *i, char *result)
+static char	*handle_escaped_quote(int *i, char *result)
 {
 	result = ft_strjoin_free(result, "\"");
 	(*i) += 2;
 	return (result);
 }
 
-static char *handle_variable_expension(const char *input, int *i,
+static char	*handle_variable_expension(const char *input, int *i,
 	t_state *state, char *result)
 {
 	char	*temp;
@@ -57,7 +57,7 @@ static char *handle_variable_expension(const char *input, int *i,
 	return (result);
 }
 
-static char *handle_regular_text(const char *input, int *i, char *result)
+static char	*handle_regular_text(const char *input, int *i, char *result)
 {
 	char	*temp;
 	int		start;

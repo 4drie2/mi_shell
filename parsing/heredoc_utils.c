@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:45:03 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:45:06 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 07:41:54 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	fork_one_heredoc(const char *lim, char **out_tmp,
 	ign.sa_handler = SIG_IGN;
 	if (sigaction(SIGINT, &ign, &old) < 0)
 		return (-1);
-	hd.tmp_filename = generate_tmp_filename();
+	hd.tmp_filename = generate_tmp_file();
 	if (!hd.tmp_filename)
 		return (-1);
 	hd.limiter = (char *)lim;
@@ -93,7 +93,7 @@ void	free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st)
 	free_command_list(cmd);
 	if (hd->tmp_filename)
 		free(hd->tmp_filename);
-	free_environment(st->envp);
+	free_envp(st->envp);
 	exit(0);
 }
 

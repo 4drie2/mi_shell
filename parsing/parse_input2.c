@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:45:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:45:34 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 07:32:29 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	validate_input(char *input)
 }
 
 /*
-** Transforme la ligne de commande en tokens (lexèmes) et vérifie leur validité syntaxique.
+** Transforme la ligne de commande en tokens (lexèmes) 
+** et vérifie leur validité syntaxique.
 ** Prend en entrée la ligne brute et l'état du shell.
 ** Retourne la liste des tokens ou NULL en cas d'erreur.
 ** En cas d'échec, met à jour le statut de sortie dans la structure d'état.

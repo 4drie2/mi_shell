@@ -6,12 +6,11 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 11:06:59 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/04/01 11:08:59 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/02 07:34:02 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
 
 void	handle_echo_command(t_command *cmd, t_state *state)
 {

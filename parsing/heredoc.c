@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:45:13 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:45:15 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 07:33:07 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	write_to_tmp_file(int fd, const char *limiter)
 {
 	char	*line;
 	line = NULL;
+
 	while (1)
 	{
 		line = readline("> ");
@@ -88,7 +89,7 @@ void	init_signal_context(t_heredoc *hd, t_command *cmd, t_state *st)
 {
 	t_context	*ctx;
 
-	ctx = get_signal_context();
+	ctx = get_signal();
 	ctx->cmd = cmd;
 	ctx->state = st;
 	st->hd = hd;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:46:32 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:46:35 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 07:31:38 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	free_command_list(t_command *cmd)
 		free_command(temp);
 	}
 }
+
 void	free_args(char **args)
 {
 	int	i;
@@ -62,4 +63,19 @@ void	free_tokens(t_token *head)
 		}
 		free(tmp);
 	}
+}
+
+void	ft_free_array(char **split)
+{
+	int	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

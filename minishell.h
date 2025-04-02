@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:17:30 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/01 13:46:29 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/02 08:30:32 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,9 @@ int			allocate_and_create_pipes(t_command *start_cmd,
 				int **pipes, pid_t **pids, t_state *state);
 void		execute_and_cleanup(t_command *start_cmd,
 				t_state *state, int (*pipes)[2], pid_t *pids);
+	/* -------- path2.c -------------------- */
+int			check_file_existence(char *cmd, t_state *st, bool *check);
+int			check_dir_and_exec(char *cmd, t_state *st, bool *check);
 	/* -------- builtins --------- */
 		/* ----- cd_utils.c ------ */
 int			check_cd_path_permission(char *path);
@@ -253,13 +256,33 @@ void		handle_pwd_command(t_state *state);
 void		handle_unset_command(char **argv, char **envp);
 
 /* ----------------    parsing    ----------------  */
+	/* -------- command_free.c -------- */
+// void		free_args(char **args);
+// void		free_command_list(t_command *cmd);
+	/* -------- command_utils.c -------- */
+t_command	*init_command(void);
+int			fill_command_args(t_command *cmd, t_token *current, int *index);
+int			handle_pipe(t_command **current_cmd, int *arg_index, t_state *state);
+int			handle_arguments(t_command *current_cmd, t_token *current, int *arg_index);
+	/* -------- ft_arraydup.c -------- il faut quoi ici lui mdr */
+char		**ft_arraydup(char **array);
 	/* -------- heredoc_utils.c -------- */
 int			fork_one_heredoc(const char *lim, char **out_tmp,
 			t_command *cmd, t_state *st);
 int			handle_all_heredocs(t_command *cmd, t_state *state);
 void		free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st);
 void		child_read_heredoc(t_heredoc *hd, t_command *cmd, t_state *st);
-
+	/* -------- heredoc_utils2.c -------- */
+int			fork_parent(pid_t p, t_heredoc *hd, t_state *st,
+				struct sigaction *o);
+int			fork_child(t_heredoc *hd, t_command *cmd,
+				t_state *st, struct sigaction *o);
+	/* -------- heredoc.c -------- */
+char		*generate_tmp_file(void);
+int			write_to_tmp_file(int fd, const char *limiter);
+void		init_signal_context(t_heredoc *hd, t_command *cmd, t_state *st);
+int			open_heredoc_file(t_heredoc *hd);
+void		read_and_write_heredoc(t_heredoc *hd);
 	/* -------- parse_input.c -------- */
 t_command	*initialize_command(t_state *state);
 int			handle_commands(t_command **cmd, t_token *tokens,
@@ -324,9 +347,7 @@ int			check_pipes(t_token *current, t_state *state);
 int			check_redirections(t_token *current, t_state *state);
 int			check_invalid_tokens(t_token *current, t_state *state);
 
-	/* -------- syntax_utils2.c -------- */
-int			check_redirections_conflicts(t_token *current, t_state *state);
-int			check_syntax_errors(t_token *tokens, t_state *state);
+
 
 	/* -------- token_utils_create.c -------- */
 t_token		*create_and_add_token(char *content, t_token **head);
@@ -345,6 +366,7 @@ char		*search_in_local_env(char **envp, const char *key);
 void		free_command_list(t_command *cmd);
 void		free_args(char **args);
 void		free_tokens(t_token *head);
+void		ft_free_array(char **split);
 
 	/* -------- utils.c -------- */
 void		free_command(t_command *cmd);
@@ -361,3 +383,16 @@ void		setup_signals_for_heredoc(void);
 void		setup_signals_for_execution(void);
 void		handle_sigint(int signo);
 void		setup_signals(void);
+
+
+//strtol
+long	handle_conversion(const char **str,
+	int base, int sign, char **endptr);
+int	determine_base(const char **str, int base);
+int	ft_convert_digit(char c);
+long	ft_handle_overflow(long result, int digit, int base, int sign);
+int	validate_base(int base, const char **str, char **endptr);
+void	skip_whitespace_and_sign(const char **str, int *sign);
+long	ft_strtol(const char *str, char **endptr, int base);
+// ft swap string
+void	ft_swap_strings(char **s1, char **s2);

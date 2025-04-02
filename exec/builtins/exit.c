@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 11:07:07 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/04/01 11:10:22 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:12:48 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	handle_exit_no_args(t_command *cmd, t_state *st)
 	while (cmd->prev)
 		cmd = cmd->prev;
 	free_command_list(cmd);
-	free_environment(st->envp);
+	free_envp(st->envp);
 	exit(st->last_exit_status = 0);
 }
 
@@ -53,7 +53,7 @@ static void	handle_exit_close_and_exit(t_command *cmd, t_state *st, long code)
 	while (cmd->prev)
 		cmd = cmd->prev;
 	free_command_list(cmd);
-	free_environment(st->envp);
+	free_envp(st->envp);
 	exit((unsigned char)code);
 }
 

@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/30 19:11:41 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/01 10:34:36 by pthuilli         ###   ########.fr       */
+/*   Created: 2025/04/01 10:34:36 by pthuilli          #+#    #+#             */
+/*   Updated: 2025/04/01 14:59:03 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 /**
  * Recherche une commande exécutable dans les chemins du PATH.
  *
@@ -125,7 +124,7 @@ int	validate_command_path(char *cmd, char **path, t_state *st, bool *check)
 {
 	if (!check_file_existence(cmd, st, check))
 		return (0);
-	if (!check_dir_exec(cmd, st, check))
+	if (!check_dir_and_exec(cmd, st, check))
 		return (0);
 	*path = ft_strdup(cmd);
 	if (!path)

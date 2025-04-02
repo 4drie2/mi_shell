@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_utils2.c                                    :+:      :+:    :+:   */
+/*   ft_swap_strings.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 16:46:19 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 08:30:07 by pthuilli         ###   ########.fr       */
+/*   Created: 2025/01/08 15:08:01 by david             #+#    #+#             */
+/*   Updated: 2025/04/01 15:14:06 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
+void	ft_swap_strings(char **s1, char **s2)
+{
+	char	*tmp;
 
-/*
-** Vérifie les erreurs de syntaxe dans la liste de tokens.
-** Retourne 1 si une erreur est détectée, 0 sinon.
-*/
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
+}

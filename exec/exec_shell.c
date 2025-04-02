@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:44:34 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/30 18:50:24 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 08:50:02 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ static void	exec_single_command(t_command *cmd, t_state *st)
 	restore_and_close_fds(st);
 }
 
+/*
+** Fonction principale pour l'exécution des commandes.
+*/
 void	exec_shell(t_command *cmd, t_state *state)
 {
 	if ((!cmd->args || !cmd->args[0]) && !cmd->is_pipe)

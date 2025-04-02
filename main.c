@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/29 23:10:38 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 08:43:40 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ int	main(int ac, char **av, char **envp)
 	(void) ac, (void) av;
 	if (init_state(&state, envp) == 1)
 		return(1);
+	setup_signals();
 	display_prompt(&state);
+	rl_clear_history();
 	free_envp(state.envp);
+	return (state.last_exit_status);
 }

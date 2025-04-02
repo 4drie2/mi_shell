@@ -24,6 +24,7 @@
 		"limits": "c",
 		"memory": "c",
 		"random": "c",
-		"span": "c"
+		"span": "c",
+		"minishell": "c"
 	}
 }
