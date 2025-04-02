@@ -37,6 +37,17 @@ int	is_command_incomplete(t_token *tokens, t_state *state)
 	return (0);
 }
 
+/**
+ * Traite un token de pipe dans la syntaxe de commande.
+ * Configure la commande courante comme ayant un pipe, initialise la commande suivante,
+ * et met à jour les pointeurs et index.
+ *
+ * @param cur_cmd Pointeur vers le pointeur de la commande courante
+ * @param cur Pointeur vers le pointeur du token courant
+ * @param arg_idx Pointeur vers l'index d'argument courant
+ * @param state Pointeur vers l'état global du shell
+ * @return 0 si succès, 2 pour erreur de syntaxe, -1 pour erreur d'allocation
+ */
 static int	process_pipe_token(t_command **cur_cmd,
 	t_token **cur, int *arg_idx, t_state *state)
 {
@@ -50,7 +61,7 @@ static int	process_pipe_token(t_command **cur_cmd,
 	}
 	(*cur_cmd)->is_pipe = 1;
 	(*cur_cmd)->args[*arg_idx] = NULL;
-	// (*cur_cmd)->next = init_command();
+	(*cur_cmd)->next = init_command();
 	if (!(*cur_cmd)->next)
 	{
 		ft_putstr_fd("minishell: malloc error\n", 2);

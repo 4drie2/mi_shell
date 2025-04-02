@@ -47,7 +47,6 @@ int	create_pipes(int num_pipes, int pipes[][2])
 	return (0);
 }
 
-// Fork les processus et exécute les commandes
 int	fork_and_execute(t_command *cmd, t_state *state,
 	int pipes[][2], pid_t *pids)
 {
