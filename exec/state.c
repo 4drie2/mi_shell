@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   state.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:35:34 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/01 11:30:15 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:08:10 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /**
  * Exécute les commandes internes (builtins) du shell.
- * Identifie la commande à partir du premier argument et appelle le gestionnaire approprié.
+ * Identifie la commande à partir du premier argument
+ * et appelle le gestionnaire approprié.
  *
  * @param cmd Structure de commande contenant les arguments à traiter
  * @param state État global du shell
@@ -64,7 +65,8 @@ void	handle_source_command(char **args, t_state *state)
 
 /**
  * Réinitialise l'état du shell pour préparer une nouvelle exécution de commande.
- * Met à zéro les compteurs, réinitialise les index et les descripteurs de fichiers,
+ * Met à zéro les compteurs, réinitialise les index
+ * et les descripteurs de fichiers,
  * et nullifie les pointeurs de ressources.
  *
  * @param state Pointeur vers la structure d'état à réinitialiser
@@ -81,7 +83,8 @@ void	reset_state(t_state *state)
 }
 
 /**
- * Vérifie la syntaxe des commandes pour s'assurer qu'elles sont correctement formées.
+ * Vérifie la syntaxe des commandes pour s'assurer qu'elles
+ * sont correctement formées.
  * Détecte notamment les pipes mal formés (sans commande les précédant).
  *
  * @param start_cmd Pointeur vers la première commande à vérifier

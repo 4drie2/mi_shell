@@ -159,15 +159,17 @@ int			exec_if_builtin(t_command *cmd, t_state *st);
 
 	/* -------- exec_utils.c -------- */
 void		setup_pipes(int pipefds[][2], t_state *state);
-void		close_pipes(int	pipefds[][2], int numpipes);
-void		print_error_and_exit(char *cmd, char *path, char *msg, int exit_code);
+void		close_pipes(int pipefds[][2], int numpipes);
+void		print_error_and_exit(char *cmd, char *path,
+				char *msg, int exit_code);
 int			print_error(char *cmd, char *path, char *msg, int exit_code);
 char		*valide_path(char *cmd_path);
 
 	/* -------- exec_utils3.c -------- */
 void		execute_external(t_command *cmd, t_state *state);
 int			is_builtin(char *cmd);
-int			check_output_target(t_redir *redir, struct stat *st, t_state *state);
+int			check_output_target(t_redir *redir,
+				struct stat *st, t_state *state);
 
 	/* -------- exec_utils4.c -------- */
 int			handle_output_redirection(t_redir *redir, t_state *state);
@@ -200,7 +202,8 @@ void		copy_environment_or_exit(t_state *st,
 void		handle_no_args_or_exit(t_command *cmd,
 				t_state *st, char **temp_env);
 	/* -------- multiples_utils.c ----------- */
-int			allocate_pipes_pids(int num_cmds, int **pipes, pid_t **pids, t_state *state);
+int			allocate_pipes_pids(int num_cmds, int **pipes,
+				pid_t **pids, t_state *state);
 int			create_pipes(int num_pipes, int pipes[][2]);
 int			fork_and_execute(t_command *cmd, t_state *state,
 				int pipes[][2], pid_t *pids);
@@ -210,7 +213,8 @@ void		wait_children(int num_cmds, pid_t *pids, t_state *state);
 char		*get_command_path(char *cmd, t_state *state);
 int			handle_access_error(char *target, t_state *state);
 int			is_path_absolute_or_relative(char *cmd);
-int			validate_command_path(char *cmd, char **path, t_state *st, bool *check);
+int			validate_command_path(char *cmd, char **path,
+				t_state *st, bool *check);
 	/* -------- path.c -------------------- */
 int			allocate_and_create_pipes(t_command *start_cmd,
 				int **pipes, pid_t **pids, t_state *state);
@@ -262,13 +266,15 @@ void		handle_unset_command(char **argv, char **envp);
 	/* -------- command_utils.c -------- */
 t_command	*init_command(void);
 int			fill_command_args(t_command *cmd, t_token *current, int *index);
-int			handle_pipe(t_command **current_cmd, int *arg_index, t_state *state);
-int			handle_arguments(t_command *current_cmd, t_token *current, int *arg_index);
+int			handle_pipe(t_command **current_cmd, int *arg_index,
+				t_state *state);
+int			handle_arguments(t_command *current_cmd, t_token *current,
+				int *arg_index);
 	/* -------- ft_arraydup.c -------- il faut quoi ici lui mdr */
 char		**ft_arraydup(char **array);
 	/* -------- heredoc_utils.c -------- */
 int			fork_one_heredoc(const char *lim, char **out_tmp,
-			t_command *cmd, t_state *st);
+				t_command *cmd, t_state *st);
 int			handle_all_heredocs(t_command *cmd, t_state *state);
 void		free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st);
 void		child_read_heredoc(t_heredoc *hd, t_command *cmd, t_state *st);
@@ -292,7 +298,8 @@ void		cleanup_on_error(t_token *tokens, t_command *cmd,
 t_command	*parse_input(char *input, t_state *state);
 
 	/* -------- parse_input2.c -------- */
-int			convert_tokens_to_commands(t_command **cmd, t_token *tokens, t_state *state);
+int			convert_tokens_to_commands(t_command **cmd, t_token *tokens,
+				t_state *state);
 int			validate_input(char *input);
 t_token		*tokenize_and_validate(char *input, t_state *state);
 
@@ -307,8 +314,10 @@ int			check_unclosed_quotes(const char *input);
 char		*handle_double_quotes(const char *input, int *i, t_state *state);
 
 	/* -------- redir.c -------- */
-int			add_in_redir(t_command *cmd, t_redir_type type, const char *content);
-int			add_out_redir(t_command *cmd, t_redir_type type, const char *content);
+int			add_in_redir(t_command *cmd, t_redir_type type,
+				const char *content);
+int			add_out_redir(t_command *cmd, t_redir_type type,
+				const char *content);
 
 /* ----------------    utils     ----------------  */
 	/* -------- parse_utils.c -------- */
@@ -332,11 +341,12 @@ int			process_tokenizer(t_command **curr,
 int			should_parse_as_special(const char *input, int i);
 int			handle_token(t_token **head, const char *input,
 				int *i, t_state *state);
-char		*handle_quotes(const char *input, int *i, char **envp, t_state *state);
+char		*handle_quotes(const char *input, int *i,
+				char **envp, t_state *state);
 char		*handle_variable(const char *input, int *i, t_state *state);
 	/* -------- quote_utils2.c -------- */
 int			process_current_char(const char *input, int *i,
-			char **word, t_state *state);
+				char **word, t_state *state);
 char		*parse_single_quote(const char *input, int *i);
 char		*parse_double_quote(const char *input, int *i,
 				char **envp, t_state *state);
@@ -346,8 +356,6 @@ int			check_initial_pipe(t_token *current, t_state *state);
 int			check_pipes(t_token *current, t_state *state);
 int			check_redirections(t_token *current, t_state *state);
 int			check_invalid_tokens(t_token *current, t_state *state);
-
-
 
 	/* -------- token_utils_create.c -------- */
 t_token		*create_and_add_token(char *content, t_token **head);
@@ -384,15 +392,14 @@ void		setup_signals_for_execution(void);
 void		handle_sigint(int signo);
 void		setup_signals(void);
 
-
 //strtol
-long	handle_conversion(const char **str,
-	int base, int sign, char **endptr);
-int	determine_base(const char **str, int base);
-int	ft_convert_digit(char c);
-long	ft_handle_overflow(long result, int digit, int base, int sign);
-int	validate_base(int base, const char **str, char **endptr);
-void	skip_whitespace_and_sign(const char **str, int *sign);
-long	ft_strtol(const char *str, char **endptr, int base);
+long		handle_conversion(const char **str,
+				int base, int sign, char **endptr);
+int			determine_base(const char **str, int base);
+int			ft_convert_digit(char c);
+long		ft_handle_overflow(long result, int digit, int base, int sign);
+int			validate_base(int base, const char **str, char **endptr);
+void		skip_whitespace_and_sign(const char **str, int *sign);
+long		ft_strtol(const char *str, char **endptr, int base);
 // ft swap string
-void	ft_swap_strings(char **s1, char **s2);
+void		ft_swap_strings(char **s1, char **s2);

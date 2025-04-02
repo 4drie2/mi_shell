@@ -80,4 +80,3 @@ int	count_commands(t_command *start_cmd)
 	}
 	return (count);
 }
-

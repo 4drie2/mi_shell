@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:52:05 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/01 09:37:53 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/02 18:10:11 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * (s'il existe), puis ferme tous les descripteurs de pipes inutilisés.
  *
  * @param pipefds Tableau de descripteurs de fichiers des pipes [num_pipes][2]
- * @param state État global contenant l'index actuel du processus et le nombre total de pipes
+ * @param state État global, contient index actuel & processus et nombre total de pipes
  */
 void	setup_pipes(int pipefds[][2], t_state *state)
 {
@@ -36,12 +36,13 @@ void	setup_pipes(int pipefds[][2], t_state *state)
  *
  * Cette fonction parcourt tous les pipes et ferme leurs extrémités
  * de lecture (0) et d'écriture (1). Elle est généralement appelée
- * après avoir configuré les redirections ou lorsque les pipes ne sont plus nécessaires.
+ * après avoir configuré les redirections
+ * ou lorsque les pipes ne sont plus nécessaires.
  *
  * @param pipefds Tableau de descripteurs de fichiers des pipes [numpipes][2]
  * @param numpipes Nombre total de pipes à fermer
  */
-void	close_pipes(int	pipefds[][2], int numpipes)
+void	close_pipes(int pipefds[][2], int numpipes)
 {
 	int	i;
 
@@ -112,6 +113,6 @@ char	*valide_path(char *cmd_path)
 			print_error("", cmd_path, ": Permission denied\n", 126);
 		return (ft_strdup(cmd_path));
 	}
-	print_error("", cmd_path, ": No such file or directory\n",127);
+	print_error("", cmd_path, ": No such file or directory\n", 127);
 	return (NULL);
 }

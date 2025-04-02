@@ -6,14 +6,15 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 22:06:05 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/29 22:38:32 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/02 18:08:44 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /**
- * Gère l'erreur de fork en mettant à jour le statut de sortie et l'environnement.
+ * Gère l'erreur de fork en mettant à jour le statut de sortie
+ * et l'environnement.
  *
  * Cette fonction est appelée lorsqu'un appel à fork() échoue. Elle:
  * 1. Affiche un message d'erreur via perror
@@ -129,7 +130,7 @@ static void	execute_fork(t_command *cmd, t_state *state)
  * 3. Lance l'exécution via fork si la commande est valide
  *
  * @param cmd Structure contenant les informations de la commande
- * @param argv Tableau d'arguments de la commande (argv[0] est le nom de la commande)
+ * @param argv Tableau d'arguments de la commande (argv[0] = nom de la commande)
  * @param state État global du shell
  */
 void	handle_external_cmd(t_command *cmd, char **argv, t_state *state)

@@ -42,7 +42,8 @@ static char	*try_paths(char **paths, char *cmd)
 }
 
 /**
- * Trouve le chemin complet d'une commande en utilisant PATH ou un chemin absolu/relatif.
+ * Trouve le chemin complet d'une commande en utilisant PATH
+ * ou un chemin absolu/relatif.
  *
  * @param cmd Nom ou chemin de la commande à rechercher
  * @param state Structure contenant l'environnement
@@ -54,7 +55,6 @@ char	*get_command_path(char *cmd, t_state *state)
 	char		**paths;
 	char		*path_env;
 	char		*validated_path;
-
 
 	if (!access(cmd, X_OK))
 	{
@@ -117,7 +117,7 @@ int	is_path_absolute_or_relative(char *cmd)
  * @param cmd Chemin de la commande à valider
  * @param path Pointeur pour stocker le chemin validé (dupliquer)
  * @param st Structure d'état du shell
- * @param check Flag pour indiquer si des vérifications supplémentaires sont nécessaires
+ * @param check Flag pour indiquer si vérifications supplémentaires nécessaires
  * @return 1 si le chemin est valide, 0 sinon
  */
 int	validate_command_path(char *cmd, char **path, t_state *st, bool *check)

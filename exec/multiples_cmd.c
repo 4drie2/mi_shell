@@ -132,7 +132,7 @@ void	execute_command(t_command *cmd, t_state *state)
 void	handle_multiple_pipes(t_command *start_cmd, t_state *state)
 {
 	state->num_pipes = allocate_and_create_pipes(start_cmd,
-		&state->pipes, &state->pids, state);
+			&state->pipes, &state->pids, state);
 	if (state->num_pipes == -1)
 		return ;
 	execute_and_cleanup(start_cmd, state,
