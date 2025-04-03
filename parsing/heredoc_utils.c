@@ -6,20 +6,22 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:45:03 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 07:41:54 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:21:30 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-// gère la création d'un heredoc (<<) dans un shell en trois étapes.
-// - elle configure le programme
-// pour ignorer temporairement Ctrl+C (SIGINT) et
-// génère un nom de fichier temporaire.
-// - crée un processus enfant avec fork(), et selon que l'on soit
-// dans le parent ou l'enfant
-// - exécute différentes fonctions
-// pour traiter l'entrée utilisateur jusqu'au délimiteur spécifié.
+/**
+ * Crée un fichier temporaire pour un heredoc en utilisant un processus fils.
+ * Gère les signaux pour permettre l'interruption du heredoc avec SIGINT.
+ * 
+ * @param lim Délimiteur de fin du heredoc
+ * @param out_tmp Pointeur vers le nom du fichier temporaire généré
+ * @param cmd Commande en cours d'exécution
+ * @param st État global du shell
+ * @return 0 en cas de succès, -1 en cas d'erreur
+ */
 int	fork_one_heredoc(const char *lim, char **out_tmp,
 		t_command *cmd, t_state *st)
 {
@@ -50,12 +52,13 @@ int	fork_one_heredoc(const char *lim, char **out_tmp,
 	return (fork_parent(pid, &hd, st, &old));
 }
 
-// Cette fonction traite tous les heredocs (<<)
-// présents dans une structure de commande, en remplaçant chaque heredoc
-// par un fichier temporaire contenant son contenu.
-// Elle prend en paramètre la commande à traiter (cmd)
-// et l'état global du programme (state),
-// puis renvoie 0 en cas de succès ou -1 en cas d'erreur.
+/**
+ * Traite tous les heredocs d'une commande en créant des fichiers temporaires.
+ * 
+ * @param cmd Pointeur vers la structure de commande
+ * @param state Pointeur vers l'état global du shell
+ * @return 0 en cas de succès, -1 en cas d'erreur
+ */
 int	handle_all_heredocs(t_command *cmd, t_state *state)
 {
 	char	*tmpfile;
@@ -76,7 +79,14 @@ int	handle_all_heredocs(t_command *cmd, t_state *state)
 	return (0);
 }
 
-// free les chids et leurs contenus puis exit
+/**
+ * Libère toutes les ressources allouées dans le processus fils du heredoc 
+ * avant de quitter.
+ * 
+ * @param hd Structure contenant les informations du heredoc
+ * @param cmd Commande en cours de traitement
+ * @param st État global du shell
+ */
 void	free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st)
 {
 	close(hd->tmp_fd);
@@ -97,6 +107,15 @@ void	free_child_and_exit(t_heredoc *hd, t_command *cmd, t_state *st)
 	exit(0);
 }
 
+/**
+ * Fonction exécutée par le processus fils pour gérer la lecture d'un heredoc.
+ * Ce processus configure les signaux, ouvre le fichier temporaire,
+ * lit l'entrée utilisateur jusqu'au délimiteur, et termine proprement.
+ * 
+ * @param hd Structure contenant les informations du heredoc
+ * @param cmd Commande en cours de traitement
+ * @param st État global du shell
+ */
 void	child_read_heredoc(t_heredoc *hd, t_command *cmd, t_state *st)
 {
 	init_signal_context(hd, cmd, st);

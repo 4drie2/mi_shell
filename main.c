@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/03 10:58:15 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:02:45 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	display_prompt(t_state *state)
 		add_history(input);
 		if (!input)
 		{
-			ft_putstr_fd("exit\n", 1);
+			ft_putstr_fd("exit\n", 2);
 			break ;
 		}
 		reset_state(state);
