@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   external_command2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:41:40 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/04/03 10:01:37 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/03 12:39:04 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ void	process_redirections_or_fail(t_command *cmd, t_state *st)
 
 void	execute_binary_or_fail(t_command *cmd, t_state *st, char *path)
 {
+	struct stat	sb;
+	
+	if (stat(path, &sb) == 0 && S_ISDIR(sb.st_mode))
+	{
+		ft_putstr_fd(path, 2);
+		ft_putstr_fd(": Is a directory\n", 2);
+		free(path);
+		while (cmd->prev)
+			cmd = cmd->prev;
+		free_command_list(cmd);
+		free_envp(st->envp);
+		exit(126);
+	}
 	if (execve(path, cmd->args, st->envp) == -1)
 	{
 		free(path);
