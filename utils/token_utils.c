@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:46:26 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:46:27 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/03 10:04:13 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ static int	handle_pipe_tok(int *i, t_token **token_list)
 /**
  * Analyse une chaîne d'entrée et génère une liste de tokens.
  *
- * Parcourt la chaîne caractère par caractère pour identifier les tokens suivants:
+ * Parcourt la chaîne caractère par caractère pour identifier
+ * les tokens suivants:
  * - Redirections (< et >)
  * - Pipes (|)
  * - Autres tokens (commandes, arguments, etc.)
@@ -123,7 +124,6 @@ t_token	*tokenize_input(const char *input, t_state *state)
 	t_token	*tokens;
 
 	tokens = NULL;
-
 	if (check_unclosed_quotes(input))
 	{
 		ft_putstr_fd("minishell: syntax error: unclosed quotes\n", 2);

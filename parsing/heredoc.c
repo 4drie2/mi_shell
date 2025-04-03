@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:45:13 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 07:33:07 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:00:09 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ char	*generate_tmp_file(void)
 int	write_to_tmp_file(int fd, const char *limiter)
 {
 	char	*line;
-	line = NULL;
 
+	line = NULL;
 	while (1)
 	{
 		line = readline("> ");
 		if (!line || !ft_strcmp(line, limiter))
-			break;
+			break ;
 		if (write(fd, line, ft_strlen(line)) == -1 || write(fd, "\n", 1) == -1)
 		{
 			perror("Error writing to temporary file");
@@ -128,11 +128,11 @@ void	read_and_write_heredoc(t_heredoc *hd)
 	{
 		line = readline("> ");
 		if (!line)
-			break;
+			break ;
 		if (!ft_strcmp(line, hd->limiter))
 		{
 			free(line);
-			break;
+			break ;
 		}
 		if (write(hd->tmp_fd, line, ft_strlen(line)) < 0
 			|| write(hd->tmp_fd, "\n", 1) < 0)

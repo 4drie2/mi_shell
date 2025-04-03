@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 08:43:40 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:15:10 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
  * - Mauvais exit code (signaux)
  * - Mauvais free (en cas de d'execVE qui foire)
  * - "." et "./" (. | ./) (leak)
- * - (pipes par tout en meme temps mais un par un entre chaque commandes)
- * - changer nom de certains malloc pour free(malloc) ou free(palestine)..
- * - fusionner convert_tokens_to_commands et convert_tokens_to_command
- * - S'occuper dereset_signals_after_execution (a integrer dans les fonctions)
+ * - (pipes par tout en meme temps mais un par 
+ * un entre chaque commandes)
+ * - changer nom de certains malloc pour free(malloc) 
+ * ou free(palestine)..
+ * - fusionner convert_tokens_to_commands 
+ * et convert_tokens_to_command
+ * - S'occuper dereset_signals_after_execution 
+ * (a integrer dans les fonctions)
  * - validate_input(char *input) a integrer dans les fonctions
+ * - Mettre le bon exit code qd exit (ctr+c ou exit)
  *
  * ---------- ASTUCES -------------
  * voir ce que fais le shell: strace -e write bash
@@ -94,19 +99,17 @@ static int	init_state(t_state *state, char **envp)
 static void	display_prompt(t_state *state)
 {
 	char	*input;
+	char	*scrap_input;
 
-	while(42)
+	while (42)
 	{
-		char	*scrap_input;
-
 		input = readline("\001\033[1;32m\002Mi-Shell $ \001\033[0m\002");
 		add_history(input);
-		scrap_input = ft_strtrim(input, " \t\r\b"); // added
+		scrap_input = ft_strtrim(input, " \t\r\b");
 		if (!scrap_input)
 		{
-			ft_putstr_fd("exit\n", 2); // 1->2
-			// global_variable = 2 (envoyer signal 2, verifiable par echo $?)
-			break;
+			ft_putstr_fd("exit\n", 2);
+			break ;
 		}
 		if (*scrap_input)
 			handle_user_input(scrap_input, state);
@@ -121,7 +124,7 @@ int	main(int ac, char **av, char **envp)
 
 	(void) ac, (void) av;
 	if (init_state(&state, envp) == 1)
-		return(1);
+		return (1);
 	setup_signals();
 	display_prompt(&state);
 	rl_clear_history();

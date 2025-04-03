@@ -12,7 +12,7 @@
 
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 FULL_CFLAGS = $(CFLAGS) -I$(LIBFT_DIR) -lreadline
 
 LIBFT_DIR = libft

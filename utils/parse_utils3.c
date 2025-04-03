@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:46:05 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 07:52:36 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:02:51 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	is_command_incomplete(t_token *tokens, t_state *state)
 
 /**
  * Traite un token de pipe dans la syntaxe de commande.
- * Configure la commande courante comme ayant un pipe, initialise la commande suivante,
+ * Configure la commande courante comme ayant un pipe,
+ * initialise la commande suivante,
  * et met à jour les pointeurs et index.
  *
  * @param cur_cmd Pointeur vers le pointeur de la commande courante

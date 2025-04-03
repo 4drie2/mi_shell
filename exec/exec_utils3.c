@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:44:49 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/01 09:38:10 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:02:33 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static char *get_executable_path(t_command *cmd, t_state *state)
+static char	*get_executable_path(t_command *cmd, t_state *state)
 {
 	char	*path;
 
@@ -70,7 +70,6 @@ int	is_builtin(char *cmd)
 		return (1);
 	return (0);
 }
-
 
 /*
 stat() : fonction systeme, place les metadonnee dans st et retourne 0 si succes

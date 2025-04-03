@@ -33,6 +33,8 @@ static void	handle_exit_no_args(t_command *cmd, t_state *st)
 {
 	while (cmd->prev)
 		cmd = cmd->prev;
+	close(st->o_stdin);
+	close(st->o_stdout);
 	free_command_list(cmd);
 	free_envp(st->envp);
 	exit(st->last_exit_status = 0);

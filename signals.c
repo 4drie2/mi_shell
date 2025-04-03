@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:20:56 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 08:38:04 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:06:39 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	reset_signals_after_execution(void)
 }
 
 /**
- * Configure les gestionnaires de signaux spécifiquement pour le mode heredoc.
- * Définit le comportement par défaut pour SIGINT (Ctrl+C) et SIGQUIT (Ctrl+\)
+ * Configure les gestionnaires de signaux spécifiquement 
+ * pour le mode heredoc.
+ * Définit le comportement par défaut pour SIGINT 
+ * (Ctrl+C) et SIGQUIT (Ctrl+\)
  * pendant la lecture d'un heredoc.
  *
  * @return Aucune valeur (void)
@@ -34,10 +36,12 @@ void	setup_signals_for_heredoc(void)
 	sigaction(SIGINT, &sa_int, NULL);
 	sigaction(SIGQUIT, &sa_int, NULL);
 }
+
 /**
  * Configure les gestionnaires de signaux pour le mode d'exécution des commandes.
  * Rétablit le comportement par défaut pour SIGINT (Ctrl+C) et SIGQUIT (Ctrl+\)
- * avec le drapeau SA_RESTART pour permettre la reprise des appels système interrompus.
+ * avec le drapeau SA_RESTART pour permettre la 
+ * reprise des appels système interrompus.
  *
  * @return Aucune valeur (void)
  */
@@ -54,9 +58,11 @@ void	setup_signals_for_execution(void)
 
 /**
  * Gestionnaire pour le signal SIGINT (Ctrl+C).
- * Comporte différemment selon que des processus enfants sont en cours d'exécution ou non.
+ * Comporte différemment selon que des processus enfants 
+ * sont en cours d'exécution ou non.
  *
- * @param signo Le numéro du signal reçu (inutilisé, mais requis par le prototype)
+ * @param signo Le numéro du signal reçu (inutilisé, mais 
+ * requis par le prototype)
  * @return Aucune valeur (void)
  */
 void	handle_sigint(int signo)

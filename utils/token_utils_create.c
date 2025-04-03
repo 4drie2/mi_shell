@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:46:22 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:46:24 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/03 10:03:39 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ t_token	*create_and_add_token(char *content, t_token **head)
 	}
 	return (new_token);
 }
-

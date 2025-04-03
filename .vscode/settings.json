@@ -25,6 +25,7 @@
 		"memory": "c",
 		"random": "c",
 		"span": "c",
-		"minishell": "c"
+		"minishell": "c",
+		"sstream": "c"
 	}
 }

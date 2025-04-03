@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:46:29 by abidaux           #+#    #+#             */
-/*   Updated: 2025/03/26 16:46:30 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/03 10:03:29 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static int	var_exists(char **envp, const char *var)
 	}
 	return (-1);
 }
-
-
 
 char	**set_env_var(char **envp, const char *key, const char *value)
 {

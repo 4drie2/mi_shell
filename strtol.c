@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   strtol.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/03 10:12:45 by abidaux           #+#    #+#             */
+/*   Updated: 2025/04/03 10:12:46 by abidaux          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-
-
 
 long	handle_conversion(const char **str,
 	int base, int sign, char **endptr)
@@ -50,7 +60,6 @@ int	determine_base(const char **str, int base)
 	return (base);
 }
 
-
 int	ft_convert_digit(char c)
 {
 	if (ft_isdigit(c))
@@ -80,28 +89,4 @@ int	validate_base(int base, const char **str, char **endptr)
 		return (0);
 	}
 	return (1);
-}
-
-void	skip_whitespace_and_sign(const char **str, int *sign)
-{
-	while (**str && ft_isspace(**str))
-		(*str)++;
-	if (**str == '+' || **str == '-')
-	{
-		if (**str == '-')
-			*sign = -1;
-		(*str)++;
-	}
-}
-
-long	ft_strtol(const char *str, char **endptr, int base)
-{
-	int	sign ;
-
-	sign = 1;
-	if (!validate_base(base, &str, endptr))
-		return (0);
-	skip_whitespace_and_sign(&str, &sign);
-	base = determine_base(&str, base);
-	return (handle_conversion(&str, base, sign, endptr));
 }

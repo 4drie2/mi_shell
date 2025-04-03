@@ -6,19 +6,22 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 18:52:05 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 18:10:11 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/03 10:01:25 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 /**
- * Configure les descripteurs de fichiers pour les pipes dans un processus enfant.
- * Redirige stdin depuis le pipe précédent (s'il existe) et stdout vers le pipe suivant
+ * Configure les descripteurs de fichiers pour les pipes
+ *  dans un processus enfant.
+ * Redirige stdin depuis le pipe précédent (s'il existe) 
+ * et stdout vers le pipe suivant
  * (s'il existe), puis ferme tous les descripteurs de pipes inutilisés.
  *
  * @param pipefds Tableau de descripteurs de fichiers des pipes [num_pipes][2]
- * @param state État global, contient index actuel & processus et nombre total de pipes
+ * @param state État global, contient index actuel & processus et 
+ * nombre total de pipes
  */
 void	setup_pipes(int pipefds[][2], t_state *state)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:47:41 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/01 09:11:56 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 09:59:47 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
  * Vérifie si le chemin spécifié correspond à un répertoire.
  *
  * @param path Le chemin à vérifier
- * @return 1 si ce n'est pas un répertoire ou si stat échoue, 0 si c'est un répertoire
+ * @return 1 si ce n'est pas un répertoire ou si stat échoue, 
+ * 0 si c'est un répertoire
  *         (affiche également un message d'erreur dans ce cas)
  */
 static int	check_if_directory(char *path)
@@ -99,7 +100,8 @@ static int	process_output_redirections(t_command *cmd, t_state *state)
 
 /**
  * Gère toutes les redirections (entrée et sortie) d'une commande.
- * Applique d'abord toutes les redirections d'entrée, puis toutes les redirections de sortie.
+ * Applique d'abord toutes les redirections d'entrée, 
+ * puis toutes les redirections de sortie.
  * Si une redirection échoue, la fonction s'arrête immédiatement.
  *
  * @param cmd Structure de commande contenant toutes les redirections à traiter

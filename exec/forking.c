@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forking.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 13:35:51 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/04/02 07:34:19 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:01:08 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	child_process(t_command *cmd, t_state *st,
 
 /**
  * Gère le cas d'une commande vide (sans arguments).
- * Effectue les redirections nécessaires et nettoie les ressources avant de quitter.
+ * Effectue les redirections nécessaires et nettoie
+ * les ressources avant de quitter.
  *
  * @param cmd Structure de la commande vide
  * @param st État global du shell

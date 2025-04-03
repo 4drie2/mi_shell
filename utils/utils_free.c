@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:46:32 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/02 07:31:38 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:03:53 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 /**
  * Libère la mémoire occupée par une liste chaînée de commandes.
