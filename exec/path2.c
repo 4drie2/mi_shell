@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 14:56:49 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/04/01 14:58:24 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 13:10:30 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_dir_and_exec(char *cmd, t_state *st, bool *check)
 	{
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
-		st->last_exit_status = 1;
+		st->last_exit_status = 126;
 		*check = true;
 		return (0);
 	}
