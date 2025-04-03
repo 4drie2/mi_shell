@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:45:13 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/03 10:00:09 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/03 11:00:57 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*generate_tmp_file(void)
 	if (!temp)
 		return (free(count_str), NULL);
 	filename = ft_strjoin("/tmp/heredoc_", temp);
+	free(pid_str);
 	free(temp);
 	free(count_str);
 	if (!filename)

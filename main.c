@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/03 10:15:10 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/03 10:58:15 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,27 +96,26 @@ static int	init_state(t_state *state, char **envp)
 	return (free(value), EXIT_SUCCESS);
 }
 
-static void	display_prompt(t_state *state)
-{
+void	display_prompt(t_state *state)
+{ 
 	char	*input;
-	char	*scrap_input;
 
-	while (42)
+	while (1)
 	{
-		input = readline("\001\033[1;32m\002Mi-Shell $ \001\033[0m\002");
+		input = readline("our shell ☭ ");
 		add_history(input);
-		scrap_input = ft_strtrim(input, " \t\r\b");
-		if (!scrap_input)
+		if (!input)
 		{
-			ft_putstr_fd("exit\n", 2);
+			ft_putstr_fd("exit\n", 1);
 			break ;
 		}
-		if (*scrap_input)
-			handle_user_input(scrap_input, state);
+		reset_state(state);
+		if (*input)
+			handle_user_input(input, state);
 		free(input);
-		free(scrap_input);
 	}
 }
+
 
 int	main(int ac, char **av, char **envp)
 {
