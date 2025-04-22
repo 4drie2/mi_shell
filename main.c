@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:02:40 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/03 11:02:45 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/07 11:46:54 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int	init_state(t_state *state, char **envp)
 }
 
 void	display_prompt(t_state *state)
-{ 
+{
 	char	*input;
 
 	while (1)
@@ -115,7 +115,6 @@ void	display_prompt(t_state *state)
 		free(input);
 	}
 }
-
 
 int	main(int ac, char **av, char **envp)
 {

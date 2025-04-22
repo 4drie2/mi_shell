@@ -6,7 +6,7 @@
 /*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 09:41:40 by pthuilli          #+#    #+#             */
-/*   Updated: 2025/04/03 13:00:28 by pthuilli         ###   ########.fr       */
+/*   Updated: 2025/04/07 11:46:37 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	execute_binary_or_fail(t_command *cmd, t_state *st, char *path)
 		free_envp(st->envp);
 		exit(126);
 	}
-
 	if (execve(path, cmd->args, st->envp) == -1)
 	{
 		free(path);

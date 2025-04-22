@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   strtol.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 10:12:45 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/03 10:12:46 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/07 11:49:25 by pthuilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 long	handle_conversion(const char **str,
 	int base, int sign, char **endptr)
