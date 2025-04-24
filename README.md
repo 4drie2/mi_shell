@@ -57,6 +57,21 @@ make
 - [abidaux](https://github.com/abidaux) - Core parsing and heredoc implementation
 - [pthuilli](https://github.com/Nlkuser) - Built-ins and excec handling
 
+
+## Challenges & Reflections but boring
+
+While Minishell might seem like a straightforward project at first glance, its true challenge lies in the tedious and extensive implementation required. The project is quite lengthy and demands meticulous attention to detail across multiple components.
+
+What makes this project particularly challenging is not necessarily complex algorithms, but rather:
+- The sheer volume of different edge cases to handle
+- Ensuring proper memory management across the entire program
+- Coordinating different parts of the shell to work seamlessly together
+
+This project taught us valuable lessons in task distribution, project organization, and collaborative coding. We learned to divide responsibilities effectively, maintain consistent coding standards across team members, and integrate various components into a cohesive final product.
+
+Unlike more algorithmically challenging projects, Minishell tests your endurance, patience, and ability to manage a large codebase with many interconnected parts.
+
+
 ## Learning Outcomes
 
 Through this project, we gained a deep understanding of:
