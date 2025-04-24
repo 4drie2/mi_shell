@@ -58,7 +58,7 @@ make
 - [pthuilli](https://github.com/Nlkuser) - Built-ins and excec handling
 
 
-## Challenges & Reflections but boring
+## Challenges & Reflections (but boring)
 
 While Minishell might seem like a straightforward project at first glance, its true challenge lies in the tedious and extensive implementation required. The project is quite lengthy and demands meticulous attention to detail across multiple components.
 
