@@ -6,7 +6,7 @@
 #    By: pthuilli <pthuilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/17 17:09:20 by abidaux           #+#    #+#              #
-#    Updated: 2025/04/03 11:11:28 by pthuilli         ###   ########.fr        #
+#    Updated: 2025/04/22 17:52:31 by pthuilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,63 @@ LIBFT = $(LIBFT_DIR)/libft.a
 TOTAL_FILES = $(words $(SRCS))
 CURRENT_FILE = 0
 
-SRCS = $(wildcard *.c) $(wildcard utils/*.c) $(wildcard exec/*.c) $(wildcard exec/builtins/*.c) $(wildcard parsing/*.c)
+SRCS = \
+    main.c \
+    utils/ft_arraydup.c \
+    utils/ft_swap_strings.c \
+    utils/parse_utils.c \
+    utils/parse_utils2.c \
+    utils/parse_utils3.c \
+    utils/quote_utils.c \
+    utils/quote_utils2.c \
+    utils/signals.c \
+    utils/strtol.c \
+    utils/strtol2.c \
+    utils/syntax_utils.c \
+    utils/token_utils.c \
+    utils/token_utils_create.c \
+    utils/utils.c \
+    utils/utils_env.c \
+    utils/utils_free.c \
+    exec/exec_shell.c \
+    exec/exec_shell2.c \
+    exec/exec_utils.c \
+    exec/exec_utils2.c \
+    exec/exec_utils3.c \
+    exec/exec_utils4.c \
+    exec/external_command.c \
+    exec/external_command2.c \
+    exec/external_utils.c \
+    exec/external_utils2.c \
+    exec/forking.c \
+    exec/multiples_cmd.c \
+    exec/multiples_cmd2.c \
+    exec/multiples_utils.c \
+    exec/path.c \
+    exec/path2.c \
+    exec/pipes.c \
+    exec/state.c \
+    exec/builtins/cd.c \
+    exec/builtins/cd_utils.c \
+    exec/builtins/echo.c \
+    exec/builtins/env.c \
+    exec/builtins/exit.c \
+    exec/builtins/export.c \
+    exec/builtins/export_utils.c \
+    exec/builtins/export_utils2.c \
+    exec/builtins/pwd.c \
+    exec/builtins/unset.c \
+    parsing/command_free.c \
+    parsing/command_utils.c \
+    parsing/heredoc.c \
+    parsing/heredoc_utils.c \
+    parsing/heredoc_utils2.c \
+    parsing/parse_input.c \
+    parsing/parse_input2.c \
+    parsing/parsing.c \
+    parsing/quotes.c \
+    parsing/redir.c
+
 OBJ_DIR = obj
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
