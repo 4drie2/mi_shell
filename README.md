@@ -1,5 +1,7 @@
 # Minishell - Our Shell ☭
 
+Code written with sweat, tears, and a bit of love (okay, maybe not love, but definitely effort).
+
 A custom Unix shell implementation developed in C as part of the 42 school curriculum.
 
 ![Minishell Logo](https://s1.qwant.com/thumbr/474x315/3/d/3d8ed8c83719322da94e15b8721ab037dd577b95916cc4812af39f6459e659/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.vBzv5fn5KZA9CFWF7P3feAHaE7%26pid%3DApi&q=0&b=1&p=0&a=0)
